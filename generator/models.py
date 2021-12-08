@@ -18,7 +18,7 @@ class Bon(models.Model):
      
 
     # Informations entête
-    date = models.DateField(max_length=30 , verbose_name="")
+    date = models.DateField(max_length=30 , verbose_name="Date")
     autoNumerotation = models.BooleanField(default=False , verbose_name="Numérotation automatique")
     nonReductibleCommand = models.BooleanField(default=False , verbose_name="Commande non reconductible ")
     editionDomTom = models.BooleanField(default=False , verbose_name="Edition DOM/TOM ")
@@ -40,15 +40,15 @@ class Bon(models.Model):
     encart = models.CharField(max_length=255 , verbose_name="Encart")
     bdcLocality = models.CharField(max_length=255 , verbose_name="Localité / Ville")
     sector = models.CharField(max_length=255 , verbose_name="Secteur d'activité")
-    priceHT = models.DecimalField(decimal_places=2 , max_digits=19 , verbose_name="Montant H.T. (par mise en ligne)")
-    tva = 19.80
+    priceHT = models.DecimalField(decimal_places=2 , max_digits=7 , verbose_name="Montant H.T. (par mise en ligne)")
+    tva = models.DecimalField(decimal_places=2 , max_digits=7 , verbose_name="Tva")
     # tva = models.DecimalField(decimal_places=2)
-    totalTTC = models.DecimalField(decimal_places=2 , max_digits=19 , verbose_name="Total T.T.C. (par mise en ligne)")
-    totalHT = models.DecimalField(decimal_places=2 , max_digits=19 , verbose_name="Total H.T. (de la campagne)")
+    totalTTC = models.DecimalField(decimal_places=2 , max_digits=7 , verbose_name="Total T.T.C. (par mise en ligne)")
+    totalHT = models.DecimalField(decimal_places=2 , max_digits=7 , verbose_name="Total H.T. (de la campagne)")
     commercialContact = models.CharField(max_length=255 , verbose_name="Contact commercial")
     observations = models.TextField(verbose_name="Observations")
 
     def __str__(self) -> str:
-        return f"id {self.id} - {self.email}"
+        return f"Bon N°{self.id} - créé par {self.ownerName}"
 
     

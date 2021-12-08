@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'generator',
-    'core'
+    'core',
+    'booking',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "generator/static",
+    BASE_DIR / "booking/static",
 ]
 
 

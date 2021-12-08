@@ -6,22 +6,23 @@ from django.shortcuts import render
 
 from generator.forms import BonForm
 
-from generator.helper import generatePDF, loadData
+from generator.helper import generatePDF, loadData, loadFixtures
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def generate(request):
     if request.method == 'POST':
         form = BonForm(request.POST)
+        
         if form.is_valid():
             bon = form.save(commit=False)
             bon.owner = request.user
             bon.ownerName = request.user.username
-            pdfId = generatePDF(bon)
-            bon.filename = pdfId
-            bon.save()
             try:
+                bon.save()
                 pdfId = generatePDF(bon)
+                bon.filename = pdfId
+                
                 return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
             except error:
                 print(error)
@@ -37,3 +38,9 @@ def generate(request):
 
 def generate_failed(request):
     return render(request, 'generate_failed.html')
+
+
+def generate_template(request):
+    data = loadFixtures()
+    bon = data[0]
+    return render(request, 'generate_template.html' , {"bon" : bon})

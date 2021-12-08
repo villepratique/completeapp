@@ -4,19 +4,25 @@
 
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
+input[type=text],input[type=email] , input[type=url], input[type=number],  select, textarea {
+  padding: 2px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
   resize: vertical;
+}
+
+input[type=text],input[type=email] , input[type=url],  select, textarea {
+  width: 100%;
 }
 
 input[type=submit] {
@@ -34,45 +40,141 @@ input[type=submit]:hover {
 
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  /* background-color: #f2f2f2; */
   padding: 20px;
 }
+
+.displayAsTable label
+{
+    width:270px;
+    float:left;
+}
+
+hr{
+  height: 0.1px;
+  color: rgb(228, 224, 224 , 0.3);
+}
+
+
 </style>
 </head>
 <body>
 
-
-<h3> Générer un bon de commande  </h3>
-
-
-
-
-<div class="container">
-  <form action="" method="post">
+<div class="container mx-auto">
+  <form class="space-y-4" action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <div class="shadow-lg p-4 rounded-lg bg-gray-100 displayAsTable">
+      <h3 class="text-2xl font-bold mt-5">Informations entête</h3>
+      {% include "_formHelper.html" with field=form.date %}
+      {% include "_formHelper.html" with field=form.autoNumerotation %}
+      {% include "_formHelper.html" with field=form.nonReductibleCommand %}
+      {% include "_formHelper.html" with field=form.editionDomTom %}
+    </div>
+
+    <div class="shadow-lg p-4 rounded-lg bg-gray-100">
+      <h3 class="text-2xl font-bold mt-5">Informations client</h3>
+      {% include "_formHelper.html" with field=form.socialReason %}
+      {% include "_formHelper.html" with field=form.representedBy %}
+      {% include "_formHelper.html" with field=form.adresse %}
+      {% include "_formHelper.html" with field=form.adresseComplement %}
+      {% include "_formHelper.html" with field=form.postalCode %}
+      {% include "_formHelper.html" with field=form.city %}
+      {% include "_formHelper.html" with field=form.phoneOrFax %}
+      {% include "_formHelper.html" with field=form.portable %}
+      {% include "_formHelper.html" with field=form.email %}
+      {% include "_formHelper.html" with field=form.website %}
+    </div>
+
+    <div class="shadow-lg p-4 rounded-lg bg-gray-100">
+      <h3 class="text-2xl font-bold mt-5">Mise en ligne</h3>
+      {% include "_formHelper.html" with field=form.firstDeploy %}
+      {% include "_formHelper.html" with field=form.nbDeployOrdered %}
+    </div>
+
+    <div class="shadow-lg p-4 rounded-lg bg-gray-100">
+      <h3 class="text-2xl font-bold mt-5">Bon de commande</h3>
+      {% include "_formHelper.html" with field=form.encart %}
+      {% include "_formHelper.html" with field=form.bdcLocality %}
+      {% include "_formHelper.html" with field=form.sector %}
+
+      <div class="displayAsTable">
+      {% include "_formHelper.html" with field=form.priceHT %}
+      {% include "_formHelper.html" with field=form.tva %}
+      {% include "_formHelper.html" with field=form.totalTTC %}
+      {% include "_formHelper.html" with field=form.totalHT %}
+      </div>
+
+      {% include "_formHelper.html" with field=form.commercialContact %}
+      {% include "_formHelper.html" with field=form.observations %}
+    </div>
+
+    <h3 class="text-2xl font-bold mt-5"> Génération du bon de commande </h3> 
+    
+    <input type="submit" value="Générer">
   </form>
-  <!-- <form action="/action_page.php">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-
-    <label for="country">Country</label>
-    <select id="country" name="country">
-      <option value="australia">Australia</option>
-      <option value="canada">Canada</option>
-      <option value="usa">USA</option>
-    </select>
-
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
-    <input type="submit" value="Submit">
-  </form> -->
 </div>
 
+<script>
+
+const setup = () => {
+    const priceHT = document.querySelector("#id_priceHT")
+    const totalTTC = document.querySelector("#id_totalTTC")
+    const totalHT = document.querySelector("#id_totalHT")
+    const tva = document.querySelector("#id_tva")
+    priceHT.step = 1
+    priceHT.min = 0
+    priceHT.value = 0
+    totalTTC.value = 0
+    totalHT.value = 0
+    tva.value = 0
+
+    totalTTC.disabled = true
+    totalHT.disabled = true
+    tva.disabled = true
+  }
+  
+setup()
+
+document.querySelector("form").addEventListener("submit" , (e) => {
+  e.preventDefault()
+  const totalTTC = document.querySelector("#id_totalTTC")
+  const totalHT = document.querySelector("#id_totalHT")
+  const tva = document.querySelector("#id_tva")
+  totalTTC.disabled = false
+  totalHT.disabled = false
+  tva.disabled = false
+  document.querySelector("form").submit()
+})
+
+
+  const handlePriceChange = (e) => {
+    const priceWithoutTaxes = parseFloat(e.target.value)
+    let priceHT = document.querySelector("#id_priceHT")
+    let totalTTC = document.querySelector("#id_totalTTC")
+    let totalHT = document.querySelector("#id_totalHT")
+    let nbDeploy = document.querySelector("#id_nbDeployOrdered").value
+    let tva = document.querySelector("#id_tva")
+
+    const tvaValue = parseFloat(priceWithoutTaxes / 5)
+
+    tva.value = tvaValue.toFixed(2)
+
+    totalTTC.value = parseFloat(tvaValue + priceWithoutTaxes).toFixed(2)
+    totalHT.value = parseFloat(nbDeploy) * priceWithoutTaxes
+  }
+
+
+  document.querySelector("#id_priceHT").onchange = handlePriceChange
+  document.querySelector("#id_priceHT").oninput = handlePriceChange
+
+
+
+  document.querySelector("#id_nbDeployOrdered").addEventListener("change" , function (e) {
+    const priceWithoutTaxes = document.querySelector("#id_priceHT").value
+    document.querySelector("#id_totalHT").value = e.target.value * priceWithoutTaxes
+  })
+
+
+</script>
 </body>
 </html>

@@ -1,0 +1,170 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tailwind CSS Contact Us Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<style type="text/css">
+
+    </style>
+</head>
+<body>
+
+    <div class="shadow-lg m-10 p-10  max-w-lg ">
+        <form action="/search" id="form1" class="space-y-4">
+            <div class="flex items-center  w-96 border border-light-blue-400 relative">
+                <img class="ml-4 h-6 " src="{% static 'booking/cook.png' %}" alt="">
+                <input id="what" name="what" class="block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md w-96 py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Quoi ? Un plombier , un maçon">
+        
+                <div id="whatResult" style="min-height: 200px;top: 40px;width: 100%;display: none;z-index: 999;" class="absolute bg-gray-100 pl-2 pr-10 py-2 ">
+                </div>
+        
+            </div>
+        
+            <div class="flex items-center  w-96 border border-light-blue-400">
+                <img class="ml-4 h-6 " src="{% static 'booking/users.png' %}" alt="">
+                <input id="who" name="who" class="block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md w-96 py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Qui ? Monsieur Dupont, SARL">
+            </div>
+        
+            <div class="flex items-center  w-96 border border-light-blue-400 relative">
+                <img class="ml-4 h-6 " src="{% static 'booking/place.png' %}" alt="">
+                <input id="where" name="where" class="block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md w-96 py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Où ? France , ile-de-France , Paris ...">
+                <div id="whereResult" style="min-height: 200px;top: 40px;width: 100%;display: none;" class="absolute bg-gray-100 pl-2 pr-10 py-2 ">
+                </div>
+            </div>
+    
+            <p id="searchNumber" class="underline cursor-pointer ">Je cherche le propriétaire d'un numero</p>
+    
+    
+            <button type="submit" class="bg-blue-500 py-2 px-4 text-white rounded-lg mx-auto ">
+                Je cherche un professionnel
+            </button>
+    
+        </form>
+    
+        <form id="form2" action="/search" class="hidden">
+            <div class="flex items-center  w-96 border border-light-blue-400 relative">
+                <img class="h-6 " src="{% static 'booking/place.png' %}" alt="">
+                <input id="numberSearch" name="numberSearch" class="block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md w-96 py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Numéro recherché">
+                <button type="submit" class="bg-blue-500 py-2 px-4 text-white rounded-lg mx-auto">
+                    Chercher
+                </button>
+                <div id="numberSearchResult" style="min-height: 200px;top: 40px;width: 100%;display: none;" class="absolute bg-gray-100 pl-2 pr-10 py-2 ">
+                </div>
+            </div>
+    
+            <p id="searchProfessional" class="underline cursor-pointer mt-4">Je cherche un professionnel</p>
+        </form>
+    </div>
+
+    <script>
+
+    const workers_data = [
+    "Abattoirs",
+    "Abrasifs et super-abrasifs (fabrication, gros)",
+    "Academies de billards",
+    "Accessoires animaux, Vente",
+    "Accessoires de levage et d'arrimage",
+    "Accessoires de mode",
+    "Accessoires et fournitures pour pharmacies",
+    "Accessoires pour etalages",
+    "Accompagnement personnalisé",
+    "Accordeurs, reparateurs de pianos",
+    "Achat et vente d'antiquites",
+    "Achat et vente d'objets d'art et de collection",
+    "Achat et vente de bijoux anciens et d'occasion",
+    "Achat, Vente, Reprise de véhicules",
+    "Acier : produits siderurgiques et transformes (fabrication, negoce)",
+    "Aciers inoxydables",
+    "Acoustique (etudes, projets, mesures)",
+    "Actuaires",
+    "Adaptations, amenagements speciaux pour automobiles, vehicules industriels",
+    "Adhesifs (fabrication, gros)"
+    ]
+
+
+    const cities_data = [
+        "Aast (64)",
+        "Abainville (55)",
+        "Abancourt (59)",
+        "Abancourt (60)",
+        "Abaucourt Hautecourt (55)",
+        "Abaucourt Sur Seille (54)",
+        "Abbans Dessous (25)",
+        "Abbans Dessus (25)",
+        "Abbaretz (44)",
+        "Abbecourt (02)",
+        "Abbecourt (60)",
+        "Abbenans (25)",
+        "Abbeville (80)",
+        "Abbeville La Riviere (91)",
+        "Abbeville Les Conflans (54)",
+        "Abbeville St Lucien (60)",
+        "Abbevillers (25)",
+        "Abeilhan (34)",
+        "Abelcourt (70)",
+        "Abere (64)",
+    
+        "Lille (59)",
+        "Lillebonne (76)",
+        "Lillemer (35)",
+        "Lillers (62)",
+        "Lilly (27)"
+    ]
+
+    const handleShowSuggestion = (e , inputId , blockId , data ) => {
+        document.querySelector(blockId).innerHTML = ""
+        const input = e.target.value
+        let html = ""
+
+        if(input.length === 0) return document.querySelector(blockId).style.display = "none"
+        data.forEach(title => {
+            const result = title.toUpperCase().includes(input.toUpperCase())
+            if(result)
+                html += `<li class='cursor-pointer hover:bg-red-300 suggestionItem'> ${title} </li>`
+        });
+        document.querySelector(blockId).innerHTML += html
+        document.querySelector(blockId).style.display = "block"
+
+
+        document.querySelectorAll(".suggestionItem").forEach((element) => {
+        element.addEventListener("click" , (e) => {
+            document.querySelector(inputId).value = e.target.textContent
+            document.querySelector(blockId).style.display = "none"
+            })
+        })
+
+    }
+
+    document.querySelector("#what").addEventListener("input" , (e) => {
+        handleShowSuggestion(e , "#what" , "#whatResult" , workers_data)
+    })
+
+    document.querySelector("#where").addEventListener("input" , (e) => {
+        handleShowSuggestion(e , "#where" , "#whereResult" , cities_data )
+    })
+
+
+    document.querySelector("#searchNumber").addEventListener("click" , () => {
+        document.querySelector("#form1").style.display = "none"
+        document.querySelector("#form2").style.display = "block"
+    })
+
+    document.querySelector("#searchProfessional").addEventListener("click" , () => {
+        document.querySelector("#form1").style.display = "block"
+        document.querySelector("#form2").style.display = "none"
+    })
+
+
+   
+    </script>
+
+
+</body>
+</html>
+

@@ -14,6 +14,7 @@ def loadData():
 
 def bonFromJson(item):
     bon = Bon()
+    bon.id = item["id"]
     bon.date = item["date"]
     bon.autoNumerotation = item["autoNumerotation"]
     bon.nonReductibleCommand = item["nonReductibleCommand"]
@@ -43,6 +44,7 @@ def bonFromJson(item):
 
 def bonToJson(bon : Bon):
     item = {}
+    item["id"] = bon.id  
     item["date"] = bon.date  
     item["autoNumerotation"] = bon.autoNumerotation  
     item["nonReductibleCommand"] = bon.nonReductibleCommand  
@@ -59,6 +61,7 @@ def bonToJson(bon : Bon):
     item["website"] = bon.website   
     item["firstDeploy"] = bon.firstDeploy  
     item["nbDeployOrdered"] = bon.nbDeployOrdered   
+    item["tva"] = bon.tva   
     item["encart"] = bon.encart  
     item["bdcLocality"] = bon.bdcLocality  
     item["sector"] = bon.sector  
@@ -82,9 +85,9 @@ from django.template import Context, Template
 
 
 def generatePDF(item : Bon):
-    f = open('generator/templates/template.html')
+    f = open('generator/templates/generate_template.html')
     template = Template(f.read())
-    html = template.render(Context({"form" : BonForm(bonToJson(item))}))
+    html = template.render(Context({"bon" : item}))
 
     title = str(time.time()) + ".pdf"
     pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title)

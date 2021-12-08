@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Template</title>
+
+    <style>
+        p , label , span{
+            font-size: 0.8rem;
+        }
+        h3{
+            font-size: 0.8rem;
+        }
+        body{
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="display: -webkit-box;" class="">
+        <div style="width: 50%;">
+
+            <div style="top: 140px;left: 0px;background-color: blue;width: 6px;height: 50px;position: absolute;" ></div>
+            <div style="top: 380px;left: 0px;background-color: blue;width: 6px;height: 50px;position: absolute;" ></div>
+            <div style="top: 560px;left: 0px;background-color: blue;width: 6px;height: 50px;position: absolute;" ></div>
+            <div style="top: 650px;left: 0px;background-color: blue;width: 6px;height: 50px;position: absolute;" ></div>
+
+            <img style="height: 7rem;" class="" src="http://localhost:8000/static/logo.jpg"  />
+
+        <div style="margin-top: 2rem;" class="">
+            <h3 class="text-xs font-bold mt-7">INFORMATIONS LOCATAIRE D'ESPACE</h3>
+
+            <p>Representé par : {{bon.representedBy}} </p>
+            <p>Adresse : {{bon.adresse}} </p>
+            <p>CP : {{bon.postalCode}} </p>
+            <p>Tél : {{bon.phoneOrFax}} </p>
+            <p>Portable : {{bon.portable}} </p>
+            <p>E-mail : {{bon.email}} </p>
+            <p>Site web : {{bon.website}} </p>
+        </div>
+
+        <div class="mt-2">
+            <h3 class="text-xs font-bold">COMMANDE PAR MISE EN LIGNE*</h3>
+            <p>Secteur d'activité: {{bon.sector}} </p>
+            <p>Ville(s): {{bon.city}} </p>
+            <p>Tarif HT: {{bon.priceHT}} </p>
+            <p>Tva (20%): {{bon.tva}}</p>
+            <p>Tarif T.T.C: {{bon.totalTTC}} </p>
+            <p>Date de la première mise en ligne: {{bon.date}} </p>
+
+        </div>
+
+        <div>
+            <h3 class="text-xs font-bold mt-2">COMMENTAIRES</h3>
+            <p>
+                {{bon.observations}}
+                
+            </p>
+        </div>
+
+        <div>
+            <h3 class="text-xs font-bold mt-2">FORMATS D'INSERTION PUBLICITAIRE</h3>
+
+            <div>
+                <span>Nb de mises en ligne souscrites :</span>
+                
+                <span> 
+                    <input checked type="radio">
+                    <label for="">{{bon.nbDeployOrdered}}</label>
+                </span>
+  
+            </div>
+
+            <div style="background-color: #ABCDFF;text-align: center;font-weight: bold;padding: 20px 0;margin-top: 2rem;">
+                <p style="width: 220px;margin: 0 auto;font-size: 0.9rem;" class="text-md mx-auto">
+                    Règlement par chèque à l'ordre de
+                    FRANCE CONSEIL
+                </p>
+            </div>
+        </div>
+
+        
+
+         </div>
+
+        <div class="" style="width: 50%;position: relative;">
+            <div style="top: 10px;left: -18px;position: absolute;height: 50px;width: 6px;background-color: blue;" class=""></div>
+            <div style="top: 140px;left: -18px;position: absolute;height: 50px;width: 6px;background-color: blue;" class=""></div>
+
+            <div>
+                <h2 style="font-size: 18px;" class="text-xl font-bold">BON DE COMMANDE</h2>
+                <div style="width: 100px;height: 3px;background-color: black;" class=""></div>
+                <p class="mt-2"> <span style="font-weight: bold;">N° {{bon.id}}</span> - 07-01-2021</p>
+            </div>
+   
+            <div>
+                <h3 style="font-weight:bold;max-width: 500px; margin-top: 65px;" class="">CONDITIONS GÉNÉRALES DE LOCATION POUR MISE 
+                   EN LIGNE.</h3>
+               
+                   <p>Lorem ipsum dolor sit amet consectetur, 
+                    adipisicing elit. Nulla omnis error placeat, 
+                    debitis consectetur veniam voluptatum veritatis 
+                    ducimus repellat magnam similique officiis porro 
+                    iusto nisi quos ab inventore rerum sed.</p>
+                
+                    <p>Lorem ipsum dolor sit amet consectetur, 
+                        adipisicing elit. Nulla omnis error placeat, 
+                        debitis consectetur veniam voluptatum veritatis 
+                        ducimus repellat magnam similique officiis porro 
+                        iusto nisi quos ab inventore rerum sed.</p>
+                    
+                        <p>Lorem ipsum dolor sit amet consectetur, 
+                            adipisicing elit. Nulla omnis error placeat, 
+                            debitis consectetur veniam voluptatum veritatis 
+                            ducimus repellat magnam similique officiis porro 
+                            iusto nisi quos ab inventore rerum sed.</p>
+                        
+                    <p>Lorem ipsum dolor sit amet consectetur, 
+                        adipisicing elit. Nulla omnis error placeat, 
+                        debitis consectetur veniam voluptatum veritatis 
+                        ducimus repellat magnam similique officiis porro 
+                        iusto nisi quos ab inventore rerum sed.</p>
+
+                        <p>Lorem ipsum dolor sit amet consectetur, 
+                            adipisicing elit. Nulla omnis error placeat, 
+                            debitis consectetur veniam voluptatum veritatis 
+                            ducimus repellat magnam similique officiis porro 
+                            iusto nisi quos ab inventore rerum sed.</p>
+
+                            <p>Lorem ipsum dolor sit amet consectetur, 
+                                adipisicing elit. Nulla omnis error placeat, 
+                                debitis consectetur veniam voluptatum veritatis 
+                                ducimus repellat magnam similique officiis porro 
+                                iusto nisi quos ab inventore rerum sed.</p>
+
+                                
+            </div>
+        </div>
+
+    </div>
+
+    <div >
+        <div style="display:  -webkit-box;background-color: #247FFE;padding: 20px 50px;margin-top: 50px;" class="">
+            <div style="background-color: white; padding:  20px;width: 40%; margin-right: 50px;">
+                <h3 class="text-xs font-bold">Vu , LE DELEGUE</h3>
+                <p>Nom: </p>
+                <p>Date: {{bon.date}}</p>
+
+                <img style="height: 4rem;margin: 2rem auto;" class="" src="http://localhost:8000/static/sign.jpg" alt="">
+            </div>
+
+            <div style="background-color: white; padding:  20px;position: relative;width: 40%;" class="">
+                <h3 class="text-xs font-bold">L'ANNONCEUR LOCATAIRE</h3>
+                <h3 class="text-xs font-bold">Signature et cachet d'entreprise.</h3>
+
+                <div style="position:absolute ; bottom: 2rem;" class=" ">
+                    <input type="checkbox">
+                     <label for="">Lu et approuvé</label>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+
+    <div style="margin-top: 2rem;text-align: center;margin-bottom: 2rem;" class="mt-4 text-center mb-10">
+        <p>Guide pratique des villes - <span style="font-weight: bold;">FRANCE CONSEIL</span> - 147 rue Anatole France - 93700 Drancy</p>
+        <p>Tél : 09 71 07 61 78 - Mail : contact@pratiquedesvilles.com - 885 265 934 R.C.S. Bobigny</p>
+    </div>
+    
+</body>
+</html>
