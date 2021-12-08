@@ -18,15 +18,20 @@ def generate(request):
             bon = form.save(commit=False)
             bon.owner = request.user
             bon.ownerName = request.user.username
-            try:
-                bon.save()
-                pdfId = generatePDF(bon)
-                bon.filename = pdfId
+            bon.save()
+            pdfId = generatePDF(bon)
+            bon.filename = pdfId
+            return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
+
+            # try:
+            #     bon.save()
+            #     pdfId = generatePDF(bon)
+            #     bon.filename = pdfId
                 
-                return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
-            except error:
-                print(error)
-                return HttpResponseRedirect('/bdc/generate/failed/')
+            #     return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
+            # except error:
+            #     print(error)
+            #     return HttpResponseRedirect('/bdc/generate/failed/')
             
     else:
         data = loadData()
