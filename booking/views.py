@@ -9,10 +9,10 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request, 'index.html' )
+    return render(request, 'booking/index/index.html' )
 
 def search(request):
-    return render(request, 'search.html' )
+    return render(request, 'booking/search.html' )
 
 def contact(request):
     form = ContactForm()
@@ -21,4 +21,4 @@ def contact(request):
         if  form.is_valid():
             form.save()
             return HttpResponseRedirect("/")
-    return render(request, 'contact.html' , {"form" : form})
+    return render(request, 'booking/contact.html' , {"form" : form})

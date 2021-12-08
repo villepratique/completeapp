@@ -99,9 +99,6 @@ def generatePDF(item : Bon):
         WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
         stdout=subprocess.PIPE).communicate()[0].strip()
 
-        print("le truc ")
-        print(WKHTMLTOPDF_CMD)
-
         config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
         pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title , configuration=config)
 

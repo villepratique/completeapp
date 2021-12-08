@@ -37,14 +37,14 @@ def generate(request):
         item = data[0]
         form = BonForm(item)
 
-    return render(request, 'template.html', {'form': form})
+    return render(request, 'generator/template.html', {'form': form})
 
 
 def generate_failed(request):
-    return render(request, 'generate_failed.html')
+    return render(request, 'generator/generate_failed.html')
 
 
 def generate_template(request):
     data = loadFixtures()
     bon = data[0]
-    return render(request, 'generate_template.html' , {"bon" : bon})
+    return render(request, 'generator/generate_template.html' , {"bon" : bon})
