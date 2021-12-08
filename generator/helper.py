@@ -6,6 +6,8 @@ from generator.forms import BonForm
 
 from generator.models import Bon
 import time
+import os
+import subprocess
 
 def loadData():
     f = open('src/fixtures/MOCK_DATA.json')
@@ -90,7 +92,29 @@ def generatePDF(item : Bon):
     html = template.render(Context({"bon" : item}))
 
     title = str(time.time()) + ".pdf"
-    pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title)
+    
+
+    if 'DYNO' in os.environ:
+        print ('loading wkhtmltopdf path on heroku')
+        WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+        stdout=subprocess.PIPE).communicate()[0].strip()
+
+        print("le truc ")
+        print(WKHTMLTOPDF_CMD)
+
+        config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+        pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title , configuration=config)
+
+    else:
+        print ('loading wkhtmltopdf path on localhost')
+        # MYDIR = os.path.dirname(__file__)    
+        # WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
+        pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title)
+    
+
+    
+
+
     return title
 
 
