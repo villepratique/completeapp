@@ -32,7 +32,6 @@ def generate(request):
             # except error:
             #     print(error)
             #     return HttpResponseRedirect('/bdc/generate/failed/')  
-    
     else:
         data = loadData()
         item = data[0]
