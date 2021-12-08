@@ -1,14 +1,14 @@
 {% load static %}
 
-<div class="flex justify-between items-center px-4 pt-2 ">
-    <div>
+<div class="flex justify-between items-center px-4 pt-2  ">
+    <div class="lg:absolute top-5">
         <img class="w-7" src="{% static 'booking/menu.png' %}" alt="navigation icon">
     </div>
-    <div class="border-4 sm:ml-52  ">
+    <div style="right: 45%;" class="border-4 lg:ml-52 lg:absolute lg:top-52  ">
         <img class="h-20" src="{% static 'logo.jpg' %}" alt="navigation icon">
     </div>
-    <div>
-        <button type="submit" class="hidden md:block text-blue-600 py-2 px-4 rounded-lg mx-auto w-full text-md  border  border-blue-400 hover:bg-blue-500 hover:text-white">
+    <div class="lg:absolute right-10 top-5">
+        <button type="submit" class="hidden lg:block text-blue-600 py-2 px-4 rounded-lg mx-auto w-full text-md  border  border-blue-400 hover:bg-blue-500 hover:text-white">
             Réferencer mon établissement
         </button>
     </div>

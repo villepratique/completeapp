@@ -42,15 +42,20 @@
 <body>
 
     {% include 'booking/index/_navbar.html' %}
+        <div class="lg:flex">
+                <img class="hidden lg:flex w-1/2" src="https://www.pratiquedesvilles.com/img/home/banner.png" alt="">
+            <div class="lg:w-1/2 lg:mt-14">
+                <h1 class="text-center font-bold md:text-2xl mt-5 max-w-xs md:max-w-md mx-auto">
+                    TROUVER <span class="text-blue-400">LE BON</span> PROFESSIONNEL
+                    DANS VOTRE VILLE
+                </h1>
+        
+             <div class="md:px-10 xl:px-20">
+                {% include 'booking/index/_formpart.html' %}
+             </div>
+            </div>
+        </div>
 
-
-        <h1 class="text-center font-bold md:text-2xl mt-5 max-w-xs md:max-w-md mx-auto">
-            TROUVER <span class="text-blue-400">LE BON</span> PROFESSIONNEL
-            DANS VOTRE VILLE
-        </h1>
-
-
-    {% include 'booking/index/_formpart.html' %}
     {% include 'booking/index/_featuredCategories.html' %}
     {% include 'booking/index/_testimonials.html' %}
     {% include 'booking/index/_news.html' %}
@@ -180,7 +185,11 @@ document.querySelector("#last_searches").innerHTML += last_searches.map((item) =
     })
 
 
-   
+
+ const featuredCategoryTemplate = document.querySelector(".featuredCategory").outerHTML
+ document.querySelector(".featuredCategory").remove()
+
+ document.querySelector('#featuredCategories').innerHTML += [1 , 2 , 3 , 4].map(() => featuredCategoryTemplate).join("")
     </script>
 
 
