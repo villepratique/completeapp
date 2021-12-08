@@ -145,6 +145,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = '/'
 
-
-
 django_heroku.settings(locals())
