@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
 import os
 
@@ -20,13 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+import os
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-r#ovop6x$*o2cqdl+g^pyxtpav#ktxj(px5o1i!x61la#mg9d4'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wzy)z&uowsq1po#f=1ml+!-pr^-7$8(s++iq27o*ci)_n0pyd)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1" , "https://project:8000"]
 
 
 # Application definition
@@ -130,6 +132,9 @@ STATICFILES_DIRS = [
 ]
 
 
+SESSION_COOKIE_SECURE=True
+CSRF_COOKIE_SECURE=True
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -139,3 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = '/'
+
+
+
+django_heroku.settings(locals())
