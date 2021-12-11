@@ -87,7 +87,11 @@ from django.template import Context, Template
 
 
 def generatePDF(item : Bon):
-    f = open('generator/templates/generate_template.html')
+    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/generate_template.html')
+
+    print("bbbbbb ",templatePlace)
+
+    f = open(templatePlace)
     template = Template(f.read())
     html = template.render(Context({"bon" : item}))
 
