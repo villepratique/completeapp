@@ -1,186 +1,79 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-    body {font-family: Arial, Helvetica, sans-serif;}
-
-    /* Full-width input fields */
-    input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    box-sizing: border-box;
-    }
-
-    /* Set a style for all buttons */
-    button {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    }
-
-    button:hover {
-    opacity: 0.8;
-    }
-
-    /* Extra styles for the cancel button */
-    .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-    }
-
-    /* Center the image and position the close button */
-    .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-    position: relative;
-    }
-
-    img.avatar {
-    width: 40%;
-    border-radius: 50%;
-    }
-
-    .container {
-    padding: 16px;
-    }
-
-    span.psw {
-    float: right;
-    padding-top: 16px;
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    width: 80%; /* Could be more or less, depending on screen size */
-    }
-
-    /* The Close Button (x) */
-    .close {
-    position: absolute;
-    right: 25px;
-    top: 0;
-    color: #000;
-    font-size: 35px;
-    font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-    color: red;
-    cursor: pointer;
-    }
-
-    /* Add Zoom Animation */
-    .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-    }
-
-    @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-    }
-    
-    @keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-    }
-
-    /* Change styles for span and cancel button on extra small screens */
-    @media screen and (max-width: 300px) {
-    span.psw {
-        display: block;
-        float: none;
-    }
-    .cancelbtn {
-        width: 100%;
-    }
-    }
-    </style>
-    <title>Login</title>
-</head>
-<body>
-
-    {% block content %}
+{% extends 'registration/authlayout.html' %}
+{% block form %}
 
 
 
-   
+		<form method="post" class="bg-white w-2/3">
+            {% csrf_token %}
+
+			<h1 class="text-gray-800 font-bold text-2xl mb-5 text-center">Bienvenue !</h1>
+            {% if next %}
+            <h1 class="text-gray-800 font-bold text-md mb-5 text-center bg-red-300">Veuillez vous connecter pour voir cette page.</h1>
+            {% endif %}
+
+            {% if form.errors %}
+                <h1 class="text-gray-800 font-bold text-sm mb-5 text-center bg-red-300">Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</h1>
+            {% endif %}
 
 
-  <div id="id01" class="modal">
-  
-    <form class="modal-content animate" action="{% url 'login' %}" method="post">
-    {% csrf_token %}
+            <div>
+                <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                    </svg>
+                    {{form.username}}
+                    {% include "registration/_formHelper.html" with field=form.username %}
 
-    
+                </div>
+            </div>
 
-      <div class="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
-      </div>
+        <div>
+            <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                        clip-rule="evenodd" />
+                </svg>
+                {{form.password}}
+                {% include "registration/_formHelper.html" with field=form.password %}
 
+            </div>
 
+        </div>
       
-  
-      <div class="container">
-        {% if next %}
-        {% if user.is_authenticated %}
-        <p>Votre compte n'a pas accès à cette page. Procéder,
-            veuillez vous connecter avec un compte qui a accès.</p>
-        {% else %}
-        <p>Veuillez vous connecter pour voir cette page.</p>
-        {% endif %}
-    {% endif %}
-    
-        {% if form.errors %}
-        <p>Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</p>
-        {% endif %}
+
+                <button type="submit" class="block w-full bg-green-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Connexion</button>
+               <div class="flex justify-between">
+                <a href="{% url 'password_reset' %}"> 
+                    <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Mot de passe oublié ?</span>
+                </a>
 
 
-        
-        <b>{{ form.username.label_tag }}</b>
-        {{ form.username }}
-  
-        <b>{{ form.password.label_tag }}</b>
-        {{ form.password }}
-          
-        <button type="submit" > Login </button>
-          <input type="hidden" name="next" value="{{ next }}" />
+
+                <a href="{% url 'register' %}">
+                    <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Pas de compte &nbsp;? Inscrivez-vous</span>
+                </a>
+               </div>
+                
+		</form>
 
 
-        <label>
-          <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
-        </label>
-      </div>
-  
-      <div class="container" style="background-color:#f1f1f1">
-        <span class="psw"> <a href="{% url 'password_reset' %}">Mot de passe oublié ?</a></span>
-      </div>
-    </form>
-  </div>
+
+
+        <script>
+
+            document.querySelector("#id_username").placeholder = "Nom d'utilisateur"
+            document.querySelector("#id_password").placeholder = "Mot de passe"
+            let inputClasses = `pl-2 outline-none border-none w-full`
+            document.querySelectorAll("input").forEach((item) => {
+                item.classList += inputClasses
+            })
+        </script>
+
+
 
 
 {% endblock %}
-
-
-
-
-  
-
-    
-</body>
-</html>
-

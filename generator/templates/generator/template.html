@@ -1,64 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends 'layout.html'  %}
 
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
+{% block css %}
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+  body {font-family: Arial, Helvetica, sans-serif;}
+  * {box-sizing: border-box;}
+  
+  input[type=text],input[type=email] , input[type=url], input[type=number],  select, textarea {
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  
+  input[type=text],input[type=email] , input[type=url],  select, textarea {
+    width: 100%;
+  }
+  
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  .container {
+    border-radius: 5px;
+    /* background-color: #f2f2f2; */
+    padding: 20px;
+  }
+  
+  .displayAsTable label
+  {
+      width:270px;
+      float:left;
+  }
+  
+  hr{
+    height: 0.1px;
+    color: rgb(228, 224, 224 , 0.3);
+  }
+  
+  
+  </style>
+{% endblock %}
 
-input[type=text],input[type=email] , input[type=url], input[type=number],  select, textarea {
-  padding: 2px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 6px;
-  margin-bottom: 16px;
-  resize: vertical;
-}
-
-input[type=text],input[type=email] , input[type=url],  select, textarea {
-  width: 100%;
-}
-
-input[type=submit] {
-  background-color: #04AA6D;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-.container {
-  border-radius: 5px;
-  /* background-color: #f2f2f2; */
-  padding: 20px;
-}
-
-.displayAsTable label
-{
-    width:270px;
-    float:left;
-}
-
-hr{
-  height: 0.1px;
-  color: rgb(228, 224, 224 , 0.3);
-}
-
-
-</style>
-</head>
-<body>
+{% block content %}
 
 <div class="container mx-auto">
   <form class="space-y-4" action="" method="post">
@@ -114,67 +109,71 @@ hr{
   </form>
 </div>
 
+
+{% endblock %}
+
+{% block javascript %}
+
 <script>
 
-const setup = () => {
-    const priceHT = document.querySelector("#id_priceHT")
+  const setup = () => {
+      const priceHT = document.querySelector("#id_priceHT")
+      const totalTTC = document.querySelector("#id_totalTTC")
+      const totalHT = document.querySelector("#id_totalHT")
+      const tva = document.querySelector("#id_tva")
+      priceHT.step = 1
+      priceHT.min = 0
+      priceHT.value = 0
+      totalTTC.value = 0
+      totalHT.value = 0
+      tva.value = 0
+  
+      totalTTC.disabled = true
+      totalHT.disabled = true
+      tva.disabled = true
+    }
+    
+  setup()
+  
+  document.querySelector("form").addEventListener("submit" , (e) => {
+    e.preventDefault()
     const totalTTC = document.querySelector("#id_totalTTC")
     const totalHT = document.querySelector("#id_totalHT")
     const tva = document.querySelector("#id_tva")
-    priceHT.step = 1
-    priceHT.min = 0
-    priceHT.value = 0
-    totalTTC.value = 0
-    totalHT.value = 0
-    tva.value = 0
-
-    totalTTC.disabled = true
-    totalHT.disabled = true
-    tva.disabled = true
-  }
-  
-setup()
-
-document.querySelector("form").addEventListener("submit" , (e) => {
-  e.preventDefault()
-  const totalTTC = document.querySelector("#id_totalTTC")
-  const totalHT = document.querySelector("#id_totalHT")
-  const tva = document.querySelector("#id_tva")
-  totalTTC.disabled = false
-  totalHT.disabled = false
-  tva.disabled = false
-  document.querySelector("form").submit()
-})
-
-
-  const handlePriceChange = (e) => {
-    const priceWithoutTaxes = parseFloat(e.target.value)
-    let priceHT = document.querySelector("#id_priceHT")
-    let totalTTC = document.querySelector("#id_totalTTC")
-    let totalHT = document.querySelector("#id_totalHT")
-    let nbDeploy = document.querySelector("#id_nbDeployOrdered").value
-    let tva = document.querySelector("#id_tva")
-
-    const tvaValue = parseFloat(priceWithoutTaxes / 5)
-
-    tva.value = tvaValue.toFixed(2)
-
-    totalTTC.value = parseFloat(tvaValue + priceWithoutTaxes).toFixed(2)
-    totalHT.value = parseFloat(nbDeploy) * priceWithoutTaxes
-  }
-
-
-  document.querySelector("#id_priceHT").onchange = handlePriceChange
-  document.querySelector("#id_priceHT").oninput = handlePriceChange
-
-
-
-  document.querySelector("#id_nbDeployOrdered").addEventListener("change" , function (e) {
-    const priceWithoutTaxes = document.querySelector("#id_priceHT").value
-    document.querySelector("#id_totalHT").value = e.target.value * priceWithoutTaxes
+    totalTTC.disabled = false
+    totalHT.disabled = false
+    tva.disabled = false
+    document.querySelector("form").submit()
   })
-
-
-</script>
-</body>
-</html>
+  
+  
+    const handlePriceChange = (e) => {
+      const priceWithoutTaxes = parseFloat(e.target.value)
+      let priceHT = document.querySelector("#id_priceHT")
+      let totalTTC = document.querySelector("#id_totalTTC")
+      let totalHT = document.querySelector("#id_totalHT")
+      let nbDeploy = document.querySelector("#id_nbDeployOrdered").value
+      let tva = document.querySelector("#id_tva")
+  
+      const tvaValue = parseFloat(priceWithoutTaxes / 5)
+  
+      tva.value = tvaValue.toFixed(2)
+  
+      totalTTC.value = parseFloat(tvaValue + priceWithoutTaxes).toFixed(2)
+      totalHT.value = parseFloat(nbDeploy) * priceWithoutTaxes
+    }
+  
+  
+    document.querySelector("#id_priceHT").onchange = handlePriceChange
+    document.querySelector("#id_priceHT").oninput = handlePriceChange
+  
+  
+  
+    document.querySelector("#id_nbDeployOrdered").addEventListener("change" , function (e) {
+      const priceWithoutTaxes = document.querySelector("#id_priceHT").value
+      document.querySelector("#id_totalHT").value = e.target.value * priceWithoutTaxes
+    })
+  
+  
+  </script>
+{% endblock %}

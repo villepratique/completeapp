@@ -1,0 +1,108 @@
+
+
+
+{% extends 'registration/authlayout.html' %}
+{% block form %}
+		<form method="post" class="bg-white w-2/3">
+			<h1 class="text-gray-800 font-bold text-2xl mb-5 text-center">Bienvenue !</h1>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+
+            {% csrf_token %}
+				<div class="mb-4">
+                    <div class="flex items-center border-2 py-2 px-3 rounded-2xl ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                        </svg>
+                        {{form.username}}
+                    </div>
+                    {% include "registration/_formHelper.html" with field=form.username %}
+                </div>
+                
+
+                <div class="mb-4">
+                    <div class="flex items-center border-2 py-2 px-3 rounded-2xl ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                        </svg>
+                        {{form.email}}
+    
+                    </div>
+                    {% include "registration/_formHelper.html" with field=form.email %}
+                </div>
+                <div class="mb-4">
+                    <div class="flex items-center border-2 py-2 px-3 rounded-2xl ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        {{form.password1}}
+                    </div>
+                    {% include "registration/_formHelper.html" with field=form.password1 %}
+
+                </div>
+                        
+                <div class="mb-4">
+                    <div class="flex items-center border-2 py-2 px-3 rounded-2xl ">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        {{form.password2}}
+                    </div>
+                    {% include "registration/_formHelper.html" with field=form.password2 %}
+        
+                </div>
+
+                <button type="submit" class="block w-full bg-green-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Créer mon compte</button>
+
+                <div class="flex justify-between">
+                    <a href="{% url 'password_reset' %}"> 
+                        <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Mot de passe oublié ?</span>
+                    </a>
+
+                    <a href="{% url 'login' %}"> 
+                        <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Déja un compte ? Se connecter</span>
+                    </a>
+
+                </div>
+
+
+		</form>
+
+
+        <script>
+
+            document.querySelector("#id_username").placeholder = "Nom d'utilisateur"
+            document.querySelector("#id_email").placeholder = "Adresse E-mail"
+            document.querySelector("#id_password1").placeholder = "Mot de passe"
+            document.querySelector("#id_password2").placeholder = "Retapez votre mot de passe"
+            
+            let inputClasses = `pl-2 outline-none border-none w-full`
+            document.querySelectorAll("input").forEach((item) => {
+                item.classList += inputClasses
+            })
+        </script>
+
+
+
+{% endblock %}
