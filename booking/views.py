@@ -22,3 +22,12 @@ def contact(request):
             form.save()
             return HttpResponseRedirect("/")
     return render(request, 'booking/contact.html' , {"form" : form})
+
+
+
+
+def cgu(request):
+    return render(request, 'booking/cgu/index.html' )
+
+def legalmentions(request):
+    return render(request, 'booking/legalmentions/index.html' )

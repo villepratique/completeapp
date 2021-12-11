@@ -5,11 +5,18 @@
         {% include 'booking/index/_navbutton.html' %}
     </div>
     <div style="right: 47%;" class="border-4  {% if isHomePage %} lg:absolute  {% endif %}  lg:ml-52 lg:top-52  ">
-        <img class="h-20" src="{% static 'logo.jpg' %}" alt="navigation icon">
+        <a href="{% url 'home' %}">
+            <img class="h-20" src="{% static 'logo.jpg' %}" alt="navigation icon">
+        </a>
+        
     </div>
     <div class="{% if isHomePage %} lg:absolute {% endif %} right-10 top-5">
-        <button type="submit" class="hidden lg:block text-blue-600 py-2 px-4 rounded-lg mx-auto w-full text-md  border  border-blue-400 hover:bg-blue-500 hover:text-white">
-            Réferencer mon établissement
-        </button>
+        <a href="{% url 'contact' %}">
+
+            <button type="submit" class="hidden lg:block text-green-600 py-2 px-4 rounded-lg mx-auto w-full text-md  border  border-blue-400 hover:bg-green-500 hover:text-white">
+                Réferencer mon établissement
+            </button>
+
+        </a>
     </div>
 </div>

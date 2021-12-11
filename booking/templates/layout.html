@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tailwind CSS Contact Us Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300i,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<style type="text/css">
+      body{
+      font-family: 'Nunito Sans', sans-serif;
+      }
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+      }
+    </style>
+
+{% block css %}
+{% endblock %}
+</head>
+<body>
+{% include 'booking/index/_navbar.html' %}
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+    {% include 'booking/index/_contactUs.html' %}
+
+
+<script>
+
+    /* Open */
+  function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+  }
+  
+  /* Close */
+  function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+  } 
+    
+  
+  
+    document.querySelector(".buttonToOpen").addEventListener("click" , () => {
+  
+      document.querySelector(".myOverlayNav").style.width = "100%"
+      document.body.style.overflowY = "hidden"
+  
+    })
+  
+  
+  
+    document.querySelector(".closebtn").addEventListener("click" , () => {
+      document.querySelector(".myOverlayNav").style.width = "0"
+  
+      document.body.style.overflowY = "scroll"
+  
+  
+    })
+  
+  
+  
+    
+  </script>
+
+
+
+
+{% block javascript %}
+
+
+{% endblock %}
+
+</body>
+</html>

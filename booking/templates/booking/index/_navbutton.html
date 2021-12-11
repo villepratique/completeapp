@@ -22,7 +22,7 @@
 
    /* When you mouse over the navigation links, change their color */
    .myOverlayNav a:hover, .myOverlayNav a:focus {
-   color: #1660b6;
+   color: #16b633;
    }
    
    /* Position the close button (top right corner) */
@@ -56,11 +56,9 @@
         background-position: center;" class="text-center border-2 py-10 px-4 md:px-10 mt-5  mx-auto lg:mx-auto lg:max-w-6xl">
 
           <ul class="py-10 bg-white max-w-4xl mx-auto">
-            <a class="text-lg font-bold" href="">ACCUEIL</a>
+            <a class="text-lg font-bold" href="{% url 'home' %}">ACCUEIL</a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
-            <a class="text-lg font-bold" href="">RECHERCHER UN PROFESSIONNEL</a>
-            <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
-            <a class="text-lg font-bold" href="">ACTUALITES</a>
+            <a class="text-lg font-bold" href="{% url 'search' %}">RECHERCHER UN PROFESSIONNEL</a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
             <a class="text-lg font-bold" href="{% url 'contact' %}">CONTACT</a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
@@ -77,12 +75,15 @@
           </ul>
 
         </div>
-
+       - 
+        
         <div class="text-center mt-4">
-          <p class="font-bold">France Conseil</p>
-          <p> 147 rue Anatole France</p>
-          <p> 93700 Drancy</p>
-          <p>Tél : 09 71 07 61 78</p>
+          <p>  9 rue de l'église </p>
+          <p> 9380 Epinay Sur Seine</p>
+          <a href="mailto:Contact@mavillepratique.fr ">
+            <p class="text-xs md:text-sm">Contact@mavillepratique.fr </p>
+        </a>
+
         </div>
       
       </div>
