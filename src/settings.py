@@ -148,6 +148,14 @@ LOGIN_REDIRECT_URL = '/'
 # config/settings.py
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'in-v3.mailjet.com'
+# EMAIL_PORT = '25'
+# EMAIL_HOST_USER = 'fe49dcb5b73eabeec5c70daaec362e6e'
+# EMAIL_HOST_PASSWORD = '1be81491da821d97a457a03f4ffd8a19'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+
 
 
 
