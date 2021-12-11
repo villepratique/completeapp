@@ -19,42 +19,63 @@
     </style>
 </head>
 <body>
-<div class="flex justify-center items-center h-screen mx-auto bg-gray-100">
+    {% include 'booking/index/_navbar.html' %}
 
-    <form action="" method="post" class="w-full md:w-3/4 lg:w-3/6 p-4">
-        <div class="p-3">
-            <h1>Pour contacter notre équipe veuillez remplir le formulaire ci-dessous.</h1>
-        </div>
 
-        {% csrf_token %}
+    <div class="h-52" style="background-image: url(https://images.pexels.com/photos/3873951/pexels-photo-3873951.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
+    background-position: top;">
+    </div>
 
-        {% for field in form %}
 
-            {{field.label_tag}}
-            {{field}}
+    <h1 class="font-semi-bold md:text-xl text-gray-900 pb-2 text-center uppercase font-bold md:text-3xl mt-10 mb-10  ">
+        <span class="text-blue-500 ">CONTACTEZ </span> NOTRE EQUIPE !
+    </h1>
 
-            {% for error in field.errors %} 
-                <div class="border border-red-400 bg-red-300 text-red-900 pl-2">
-                    <strong>{{ error|escape }}</strong>
-                </div>
+
+    <div class="flex justify-center items-center mx-auto mb-20 max-w-8xl">
+
+        <form action="" method="post" class="w-full md:w-3/4 lg:w-3/6 px-10 bg-gray-100 mx-4 sm:mx-auto lg:mx-0 ">
+            <div class="p-3">
+                <h1>Pour contacter notre équipe veuillez remplir le formulaire ci-dessous.</h1>
+            </div>
+
+            {% csrf_token %}
+
+            {% for field in form %}
+
+                {{field.label_tag}}
+                {{field}}
+
+                {% for error in field.errors %} 
+                    <div class="border border-red-400 bg-red-300 text-red-900 pl-2">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            
             {% endfor %}
-        
-        {% endfor %}
 
-        <div class="p-3 pt-4">
-            <button class="w-full bg-gray-700 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded text-2xl">
-            Envoyer -
-            </button>
-        </div>
-    </form>
+            <div class="p-3 pt-4">
+                <button class="w-full bg-blue-700 hover:bg-gray-900 text-white font-bold py-3 px-4 rounded text-2xl">
+                Envoyer -
+                </button>
+            </div>
+        </form>
 
-    <script>
-        let inputClasses = `block appearance-none placeholder-gray-500 placeholder-opacity-100 border border-light-blue-400 rounded-md w-full py-3 px-4 text-gray-700 leading-5 focus:outline-none focus:ring-2 focus:ring-light-blue-300`
-        document.querySelectorAll("input , textarea").forEach((item) => {
-            item.classList += inputClasses
-        })
-    </script>
+        <img style="max-height: 800px;" class="w-1/3 hidden lg:block" src="https://images.pexels.com/photos/2528118/pexels-photo-2528118.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="">
 
-</div>
+
+    </div>
+
+
+    {% include 'booking/index/_contactUs.html' %}
+
+
+        <script>
+            let inputClasses = `block appearance-none placeholder-gray-500 placeholder-opacity-100 border border-light-blue-400 rounded-md w-full py-3 px-4 text-gray-700 leading-5 focus:outline-none focus:ring-2 focus:ring-light-blue-300`
+            document.querySelectorAll("input , textarea").forEach((item) => {
+                item.classList += inputClasses
+            })
+        </script>
+
 </body>
 </html>

@@ -7,8 +7,8 @@
             <img class="ml-4 h-6 " src="{% static 'booking/cook2.png' %}" alt="">
             <input id="what" name="what" class=" w-full block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md  py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Quoi ? Un plombier , un maçon">
     
-            <div id="whatResult" style="min-height: 200px;top: 40px;width: 100%;display: none;z-index: 999;" class="absolute bg-gray-100 pl-2 pr-10 py-2 ">
-            </div>
+            <ul id="whatResult" style="z-index:9999;min-height: 200px;top: 40px;width: 100%;display: none;z-index: 999;" class="absolute bg-white  py-2 ">
+            </ul>
     
         </div>
     
@@ -20,8 +20,8 @@
         <div class="flex items-center bg-white text-xs   border border-light-blue-400 relative">
             <img class="ml-4 h-6 " src="{% static 'booking/place.png' %}" alt="">
             <input id="where" name="where" class=" w-full block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md  py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Où ? France , ile-de-France , Paris ...">
-            <div id="whereResult" style="min-height: 200px;top: 40px;width: 100%;display: none;" class="absolute bg-gray-100 pl-2 pr-10 py-2 ">
-            </div>
+            <ul id="whereResult" style="z-index:9999;min-height: 200px;top: 40px;width: 100%;display: none;" class="absolute bg-gray-100  py-2 ">
+            </ul>
         </div>
 
         <button type="submit" class="bg-blue-600 py-2 px-4 text-white rounded-lg mx-auto w-full text-xs md:text-lg">
@@ -31,7 +31,7 @@
         <p id="searchNumber" class="underline cursor-pointer text-center text-sm ">Je cherche le propriétaire d'un numero</p>
     </form>
 
-    <form id="form2" action="/search" class="hidden">
+    <form autocomplete="off" id="form2" action="/search" class="hidden">
         <h2 class="font-bold italic text-center text-lg my-4 ">
 
             À qui appartient <span class="text-blue-400">ce numéro ?</span>
@@ -40,15 +40,15 @@
 
         <div class="flex items-center text-xs  border border-light-blue-400 relative">
             <img class="h-6 " src="{% static 'booking/place.png' %}" alt="">
-            <input id="numberSearch" name="numberSearch" class="w-full block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md  py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Numéro recherché">
+            <input  id="numberSearch" name="numberSearch" class="w-full block appearance-none placeholder-gray-500 placeholder-opacity-100  rounded-md  py-2 px-4 text-gray-700 leading-5 outline-none " type="text" placeholder="Numéro recherché">
             <button type="submit" class="bg-blue-500 py-2 px-4 text-white rounded-lg mx-auto w-24 text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
 
             </button>
-            <div id="numberSearchResult" style="min-height: 200px;top: 40px;width: 100%;display: none;" class="absolute bg-gray-100 pl-2 pr-10 py-2 ">
-            </div>
+            <ul id="numberSearchResult" style="z-index:9999;min-height: 200px;top: 40px;width: 100%;display: none;" class="absolute bg-gray-100  py-2 ">
+            </ul>
         </div>
 
         <p id="searchProfessional" class="underline cursor-pointer mt-4 text-center">Je cherche un professionnel</p>
