@@ -31,6 +31,7 @@ class CustomPasswordResetView(auth_views.PasswordResetView):
     form_class = CustomPasswordResetForm
     from_email = "richard.bathiebo.7@gmail.com"
     template_name = "registration/auth/password_reset_form.html"
+    email_template_name = 'registration/auth/password_reset_emailR.html'
 
 urlpatterns = [
     # path('login/', login , name="login"),
