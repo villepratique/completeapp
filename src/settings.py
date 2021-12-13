@@ -13,7 +13,7 @@ import django_heroku
 from pathlib import Path
 import os
 
-print(os.environ.get('MJ_APIKEY_PUBLIC'))
+print("env " , os.environ.get('MJ_APIKEY_PUBLIC'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
