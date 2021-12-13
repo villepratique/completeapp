@@ -3,7 +3,7 @@
 
 
 
-		<form method="post" class="bg-white w-2/3">
+		<form method="post" class="bg-white w-full shadow-lg px-10 py-10 md:max-w-2xl">
             {% csrf_token %}
 
 			<h1 class="text-gray-800 font-bold text-2xl mb-5 text-center">Bienvenue !</h1>
@@ -46,16 +46,19 @@
       
 
                 <button type="submit" class="block w-full bg-green-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Connexion</button>
-               <div class="flex justify-between">
-                <a href="{% url 'password_reset' %}"> 
-                    <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Mot de passe oublié ?</span>
-                </a>
+               <div class="lg:flex justify-between">
+                <p>
+                    <a href="{% url 'password_reset' %}"> 
+                        <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Mot de passe oublié ?</span>
+                    </a>
+                </p>
 
 
 
-                <a href="{% url 'register' %}">
+                <p><a href="{% url 'register' %}">
                     <span class="text-sm ml-2 hover:text-blue-500 cursor-pointer">Pas de compte &nbsp;? Inscrivez-vous</span>
                 </a>
+            </p>
                </div>
                 
 		</form>

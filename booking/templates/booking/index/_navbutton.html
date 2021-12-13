@@ -56,19 +56,19 @@
         background-position: center;" class="text-center border-2 py-10 px-4 md:px-10 mt-5  mx-auto lg:mx-auto lg:max-w-6xl">
 
           <ul class="py-10 bg-white max-w-4xl mx-auto">
-            <a class="text-lg font-bold" href="{% url 'home' %}">ACCUEIL</a>
+            <a class="text-lg font-bold uppercase" href="{% url 'home' %}">acceuil</a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
-            <a class="text-lg font-bold" href="{% url 'search' %}">RECHERCHER UN PROFESSIONNEL</a>
+            <a class="text-lg font-bold uppercase" href="{% url 'search' %}">rechercher un professionnel</a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
-            <a class="text-lg font-bold" href="{% url 'contact' %}">CONTACT</a>
+            <a class="text-lg font-bold uppercase" href="{% url 'contact' %}">contact</a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
 
             {% if request.user.is_authenticated %}
-            <a class="text-lg font-bold" href="{% url 'logout_request' %}">Déconnexion  </a>
+            <a class="text-lg font-bold uppercase" href="{% url 'logout_request' %}">Déconnexion  </a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
 
             {% else %}
-            <a class="text-lg font-bold" href="{% url 'login' %}">Connexion  </a>
+            <a class="text-lg font-bold uppercase" href="{% url 'login' %}">Connexion  </a>
             <div style="border: solid 1px #D9D9D9;" class="w-32 mx-auto my-5"></div>
 
             {% endif %}

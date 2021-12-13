@@ -13,14 +13,13 @@ import django_heroku
 from pathlib import Path
 import os
 
+print(os.environ.get('MJ_APIKEY_PUBLIC'))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-import os
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wzy)z&uowsq1po#f=1ml+!-pr^-7$8(s++iq27o*ci)_n0pyd)')
@@ -146,17 +145,8 @@ AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = '/'
 
 # config/settings.py
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'in-v3.mailjet.com'
-# EMAIL_PORT = '25'
-# EMAIL_HOST_USER = 'fe49dcb5b73eabeec5c70daaec362e6e'
-# EMAIL_HOST_PASSWORD = '1be81491da821d97a457a03f4ffd8a19'
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-
-
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
 
 django_heroku.settings(locals())
