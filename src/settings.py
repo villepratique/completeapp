@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wzy)z&uowsq1po#f=1ml+!-pr^-7$8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1" , "https://pyproject99.herokuapp.com"]
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -133,9 +133,6 @@ STATICFILES_DIRS = [
 
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
-SECURE_SSL_REDIRECT=True
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -144,23 +141,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+
 AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = '/'
-
+SECURE_SSL_REDIRECT = False
 # config/settings.py
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
-
-
-if os.environ.get('DJANGO_DEVELOPMENT'):
-    SESSION_COOKIE_SECURE=True
-    CSRF_COOKIE_SECURE=True
-    SECURE_SSL_REDIRECT=True
-    DEBUG = False
-
-
-
-
 
 
 django_heroku.settings(locals())
