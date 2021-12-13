@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_extensions",
     'generator',
     'core',
     'booking',
@@ -125,11 +126,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "generator/static",
-    BASE_DIR / "booking/static",
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),)
 
+# STATICFILES_DIRS = [
+#     BASE_DIR / "generator/static",
+#     BASE_DIR / "booking/static",
+# ]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
