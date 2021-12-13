@@ -13,7 +13,7 @@ import django_heroku
 from pathlib import Path
 import os
 
-print("env " , os.environ.get('MJ_APIKEY_PUBLIC'))
+print(os.environ.get('MJ_APIKEY_PUBLIC'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wzy)z&uowsq1po#f=1ml+!-pr^-7$8(s++iq27o*ci)_n0pyd)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1" , "https://pyproject99.herokuapp.com"]
 
@@ -133,6 +133,9 @@ STATICFILES_DIRS = [
 
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
+SECURE_SSL_REDIRECT=True
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -147,6 +150,17 @@ LOGIN_REDIRECT_URL = '/'
 # config/settings.py
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+
+if os.environ.get('DJANGO_DEVELOPMENT'):
+    SESSION_COOKIE_SECURE=True
+    CSRF_COOKIE_SECURE=True
+    SECURE_SSL_REDIRECT=True
+    DEBUG = False
+
+
+
+
 
 
 django_heroku.settings(locals())
