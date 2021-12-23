@@ -148,5 +148,6 @@ SECURE_SSL_REDIRECT = False
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 # EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
 
+SITE_URL="http://127.0.0.1:8000"
 
 django_heroku.settings(locals())

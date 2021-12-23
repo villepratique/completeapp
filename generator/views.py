@@ -9,10 +9,13 @@ from generator.forms import BonForm
 from generator.helper import generatePDF, loadData, loadFixtures
 from django.contrib.auth.decorators import login_required
 
+from django.conf import settings
+
 @login_required
 def generate(request):
-    print(request.META['HTTP_HOST'])
-    print(request.META)
+    print(settings.SITE_URL)
+    # print(request.META['HTTP_HOST'])
+    # print(request.META)
     if request.method == 'POST':
         form = BonForm(request.POST)
         if form.is_valid():
@@ -20,7 +23,7 @@ def generate(request):
             bon.owner = request.user
             bon.ownerName = request.user.username
             bon.save()
-            pdfId = generatePDF(bon , request.META['HTTP_ORIGIN'])
+            pdfId = generatePDF(bon , settings.SITE_URL)
             bon.filename = pdfId
             return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
             # try:
@@ -47,4 +50,4 @@ def generate_failed(request):
 def generate_template(request):
     data = loadFixtures()
     bon = data[0]
-    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : request.META['HTTP_ORIGIN']})
+    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : settings.SITE_URL })
