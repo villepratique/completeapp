@@ -11,15 +11,15 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def generate(request):
+    print()
     if request.method == 'POST':
         form = BonForm(request.POST)
-        
         if form.is_valid():
             bon = form.save(commit=False)
             bon.owner = request.user
             bon.ownerName = request.user.username
             bon.save()
-            pdfId = generatePDF(bon)
+            pdfId = generatePDF(bon , request.META['HTTP_HOST'])
             bon.filename = pdfId
             return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
 
@@ -47,4 +47,4 @@ def generate_failed(request):
 def generate_template(request):
     data = loadFixtures()
     bon = data[0]
-    return render(request, 'generator/generate_template.html' , {"bon" : bon})
+    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : "http://localhost:8000"})
