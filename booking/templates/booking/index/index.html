@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 
+{% load static %}
 
  <!-- Swiper's CSS -->
 {% block css %}
@@ -204,10 +205,18 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
       
       
       
-       const featuredCategoryTemplate = document.querySelector(".featuredCategory").outerHTML
+       const featuredCategoryTemplate = (title , index) => `<div class="relative mt-5 featuredCategory">
+            <img class="w-full" src="{% static 'booking/cat${index + 1}.jpeg' %}" alt="">
+
+            <div 
+            class="w-3/5  h-20 bg-white text-center bottom-0 right-0 absolute flex items-center shadow-md">
+                <p style="max-width: 120px;" class=" mx-auto">${title}</p>
+            </div>
+        </div>`
+
        document.querySelector(".featuredCategory").remove()
       
-       document.querySelector('#featuredCategories').innerHTML += [1 , 2 , 3 , 4].map(() => featuredCategoryTemplate).join("")
+       document.querySelector('#featuredCategories').innerHTML += [ {title : "Restaurants"}, {title : "Cuisine"}, {title : "Coiffure"} , {title : "Mécanique"}].map((item , i) => featuredCategoryTemplate(item.title , i)).join("")
           </script>
       
       
