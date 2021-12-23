@@ -23,7 +23,6 @@ def generate(request):
             pdfId = generatePDF(bon , request.META['HTTP_ORIGIN'])
             bon.filename = pdfId
             return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
-
             # try:
             #     bon.save()
             #     pdfId = generatePDF(bon)
@@ -48,4 +47,4 @@ def generate_failed(request):
 def generate_template(request):
     data = loadFixtures()
     bon = data[0]
-    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : "http://localhost:8000"})
+    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : request.META['HTTP_ORIGIN']})
