@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def generate(request):
-    print()
+    print(request.META['HTTP_HOST'])
+    print(request.META)
     if request.method == 'POST':
         form = BonForm(request.POST)
         if form.is_valid():
@@ -19,7 +20,7 @@ def generate(request):
             bon.owner = request.user
             bon.ownerName = request.user.username
             bon.save()
-            pdfId = generatePDF(bon , request.META['HTTP_HOST'])
+            pdfId = generatePDF(bon , request.META['HTTP_ORIGIN'])
             bon.filename = pdfId
             return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
 
