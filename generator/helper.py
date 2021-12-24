@@ -37,7 +37,7 @@ def bonFromJson(item):
     bon.bdcLocality = item["bdcLocality"]
     bon.sector = item["sector"]
     bon.priceHT = item["priceHT"]
-    # bon.tva = item["tva"]
+    bon.tva = 1.2
     bon.totalTTC = item["totalTTC"]
     bon.totalHT = item["totalHT"]
     bon.commercialContact = item["commercialContact"]
