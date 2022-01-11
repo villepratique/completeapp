@@ -86,7 +86,7 @@ import pdfkit
 from django.template import Context, Template
 
 
-def generatePDF(item : Bon , siteUrl = "http://localhost:8000"):
+def generatePDF(item : Bon , siteUrl = "https://pyproject99.herokuapp.com"):
     templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/generate_template.html')
 
     print("bbbbbb ",templatePlace)

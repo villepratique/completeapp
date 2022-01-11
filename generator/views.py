@@ -50,4 +50,4 @@ def generate_failed(request):
 def generate_template(request):
     data = loadFixtures()
     bon = data[0]
-    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : settings.SITE_URL })
+    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : "https://pyproject99.herokuapp.com" })
