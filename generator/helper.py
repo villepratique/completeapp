@@ -1,4 +1,5 @@
 
+from datetime import datetime
 import json
 from typing import List
 
@@ -93,7 +94,7 @@ def generatePDF(item : Bon , siteUrl = "https://pyproject99.herokuapp.com"):
 
     f = open(templatePlace)
     template = Template(f.read())
-    html = template.render(Context({"bon" : item , "siteUrl" : siteUrl}))
+    html = template.render(Context({"bon" : item , "siteUrl" : siteUrl , "date" : datetime.now}))
 
     title = str(time.time()) + ".pdf"
     

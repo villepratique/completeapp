@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from os import error
 from django.http.response import HttpResponseRedirect
 # Create your views here.
@@ -50,4 +51,4 @@ def generate_failed(request):
 def generate_template(request):
     data = loadFixtures()
     bon = data[0]
-    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : "https://pyproject99.herokuapp.com" })
+    return render(request, 'generator/generate_template.html' , {"bon" : bon , "siteUrl" : "https://pyproject99.herokuapp.com" , "date" : datetime.now })
