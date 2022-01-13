@@ -101,24 +101,24 @@ tfoot {
                 <p style="margin:4px 0;">Activité supplémentaire: ......................................1 140 euros</p>
                 <p style="margin:4px 0;">Montant annuel H.T (campagne): ...............................0 euros</p>
 
-                <p>
+                <p >
                     Nb de mises en ligne souscrites :
 
                     <span> 
-                        <input {% if bon.nbDeployOrdered == 3 %} checked {% endif %}  type="radio">
-                        <label for="">3</label>
+                        <input style="height: 10px;" {% if bon.nbDeployOrdered == 3 %} checked {% endif %}  type="radio">
+                        3
                     </span>
                     <span> 
-                        <input {% if bon.nbDeployOrdered == 6 %} checked {% endif %}  type="radio">
-                        <label for="">6</label>
+                        <input style="height: 10px;" {% if bon.nbDeployOrdered == 6 %} checked {% endif %}  type="radio">
+                        6
                     </span>
                     <span> 
-                        <input {% if bon.nbDeployOrdered == 9 %} checked {% endif %}  type="radio">
-                        <label for="">9</label>
+                        <input style="height: 10px;" {% if bon.nbDeployOrdered == 9 %} checked {% endif %}  type="radio">
+                        9
                     </span>
                     <span> 
-                        <input {% if bon.nbDeployOrdered == 12 %} checked {% endif %}  type="radio">
-                        <label for="">12</label>
+                        <input style="height: 10px;" {% if bon.nbDeployOrdered == 12 %} checked {% endif %}  type="radio">
+                        12
                     </span>
 
                 </p>
@@ -140,20 +140,20 @@ tfoot {
          </div>
 
         <div class="" style="width: 50%;position: relative;">
-            <div style="top: 10px;left: -18px;position: absolute;height: 50px;width: 10px;background-color: #057855;" class=""></div>
-            <div style="top: 70px;left: -18px;position: absolute;height: 50px;width: 10px;background-color: #057855;" class=""></div>
+            <div style="top: 60px;left: -18px;position: absolute;height: 50px;width: 10px;background-color: #057855;" class=""></div>
+            <div style="top: 170px;left: -18px;position: absolute;height: 50px;width: 10px;background-color: #057855;" class=""></div>
 
-            <div>
-                <h3>BON DE COMMANDE</h3>
+            <div style="margin-top: 55px;">
+                <h3 style="font-size: 1.2rem;text-align: left;margin: 0;margin-bottom: 4px;">BON DE COMMANDE</h3>
                 <div style="width: 100px;height: 3px;background-color: black;" class=""></div>
-                <p class="mt-2"> <span style="font-weight: bold;">N° {{bon.id}}</span> -   {{date|date:"d/m/Y"}}</p>
+                <p style="font-size: 0.9rem;margin: 10px 0;"> <span style="font-weight: bold;font-size: 0.9rem;">N° {{bon.id}}</span> -   {{date|date:"d/m/Y"}}</p>
             </div>
    
-            <div>
-                <h3 style="font-weight:bold;max-width: 500px; margin-top: 25px;" class="">CONDITIONS GÉNÉRALES DE LOCATION POUR MISE 
+            <div style="max-width: 90%;margin-top: 55px;">
+                <h3 style="font-weight:bold;max-width: 500px;margin: 0; " class="">CONDITIONS GÉNÉRALES DE LOCATION POUR MISE 
                    EN LIGNE.</h3>
                                
-                <p style="font-size: 0.4rem;line-height: 1;">
+                <p style="font-size: 0.55rem;line-height: 1;">
                     1/ Le site www.mavillepratique.fr n’entretient aucun lien avec une collectivité
                     publique ou entreprise privée. 2/ Les prix sont établis pour un paiement comptant. Les
                     tarifs sont indiqués hors taxes. L’exécution d’une commande à un prix convenu
@@ -201,7 +201,7 @@ tfoot {
                     dans la rubrique choisie conformément à la réglementation qui lui est applicable.
                     <p style="margin-top: 0.2em;font-weight: bold;font-size: 0.6rem;">*LA MISE EN LIGNE S’ENTEND D’UNE LOCATION D’UNE DURÉE D’UN MOIS.</p>
 
-                    <p style="font-size: 0.4rem">
+                    <p style="font-size: 0.55rem">
                         L’annonceur reconnaît avoir pris connaissance de l’ensemble des présentes conditions
                         générales de vente. La publicité paraît sous la responsabilité unique de l’annonceur
                         qui certifie que la publicité est conforme à l’ensemble des lois et réglements en
@@ -221,7 +221,7 @@ tfoot {
 
     <div >
         <div style="display:  -webkit-box;background-color: #057855;padding: 20px 50px;margin-top: 5px;" class="">
-            <div style="background-color: white; padding: 5px  20px 0 20px;width: 40%; margin-right: 50px;height: 180px;">
+            <div style="background-color: white; padding: 5px  20px 0 20px;width: 40%; margin-right: 50px;height: 140px;">
                 <h3 class="text-xs font-bold">Vu , LE DELEGUE</h3>
                 <!-- <p>Nom: </p> -->
                 <p>Nom: ......................................................</p>
