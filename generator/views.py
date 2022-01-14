@@ -14,9 +14,6 @@ from django.conf import settings
 
 @login_required
 def generate(request):
-    print(settings.SITE_URL)
-    # print(request.META['HTTP_HOST'])
-    # print(request.META)
     if request.method == 'POST':
         form = BonForm(request.POST)
         if form.is_valid():
@@ -37,9 +34,9 @@ def generate(request):
             #     print(error)
             #     return HttpResponseRedirect('/bdc/generate/failed/')  
     else:
-        data = loadData()
-        item = data[0]
-        form = BonForm(item)
+        # data = loadData()
+        # item = data[0]
+        form = BonForm()
 
     return render(request, 'generator/template.html', {'form': form})
 

@@ -33,7 +33,7 @@ def bonFromJson(item):
     bon.email = item["email"]
     bon.website = item["website"] 
     bon.firstDeploy = item["firstDeploy"]
-    bon.nbDeployOrdered = item["nbDeployOrdered"]
+    bon.nbDeployOrdered = int(item["nbDeployOrdered"])
     bon.encart = item["encart"]
     bon.bdcLocality = item["bdcLocality"]
     bon.sector = item["sector"]
@@ -63,7 +63,7 @@ def bonToJson(bon : Bon):
     item["email"] = bon.email  
     item["website"] = bon.website   
     item["firstDeploy"] = bon.firstDeploy  
-    item["nbDeployOrdered"] = bon.nbDeployOrdered   
+    item["nbDeployOrdered"] = int(bon.nbDeployOrdered)  
     item["tva"] = bon.tva   
     item["encart"] = bon.encart  
     item["bdcLocality"] = bon.bdcLocality  
@@ -89,6 +89,8 @@ from django.template import Context, Template
 
 def generatePDF(item : Bon , siteUrl = "https://pyproject99.herokuapp.com"):
     templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/generate_template.html')
+    
+    item.nbDeployOrdered = int(item.nbDeployOrdered)
 
     print("bbbbbb ",templatePlace)
 
