@@ -133,9 +133,14 @@ import fillpdf
 from fillpdf import fillpdfs
 
 def getValue(value ,item : Bon ):
-    if(value == item.nbDeployOrdered):
-        return "Yes"
-    return "Off"
+    try:
+        if(value == int(item.nbDeployOrdered)):
+            return "Yes"
+        return "Off"
+    except:
+        return "Off"
+    
+    
 
 
 def getData(item : Bon):
@@ -166,7 +171,7 @@ def generatePDF(item : Bon) :
 
     title = str(time.time()) + ".pdf"
     resultPlace = 'generator/static/generator/pdfs/'+title
-    
+
     d = getData(item)
     fillpdfs.write_fillable_pdf(templatePlace, resultPlace, d)
     fillpdfs.flatten_pdf(resultPlace, resultPlace)
