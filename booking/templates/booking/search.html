@@ -4,21 +4,26 @@
 
 {% block content %}
 
-<div style="min-height: 80vh;">
+<div style="min-height: 80vh;" class="">
 
-    <div  class="lg:grid lg:grid-cols-2 lg:gap-8  xl:grid-cols-3 my-10 mx-4 space-y-10 lg:space-y-0">
+    <div  class="lg:grid lg:grid-cols-2 xl:grid-cols-2 my-10 mx-4 space-y-10 lg:space-y-0 max-w-6xl mx-auto gap-8 px-4 md:px-4">
         {% for e in data %}
-        <div class="flex shadow-lg border-2 lg:max-w-md mx-auto ">
+        <div class="flex shadow-lg border-2 lg:max-w-lg mx-auto ">
             <div style="background-image: url(https://via.placeholder.com/290x228.png?text=Ma%20ville%20pratique);
             background-position: center ;background-size: cover;" class=" w-72 h-52">
             </div>
-            <div class="px-4 pt-2 space-y-4 relative">
+            
+            <div class="px-4 pt-2 relative">
                 <p>{{e.title}}</p>
-            <span class="text-gray-400 italic">{{e.job}}</span>
-                <div class="w-20 h-2 bg-gray-400">
+                <span class="text-gray-400 italic">{{e.job}}</span>
+                
+                <div class="w-20 h-2 bg-gray-400 mt-4">
                 </div>
+
+                <p class="mt-4 text-sm">
+                    <span class="text-red-900">{{e.streetNumber}} {{e.streetName}}</span>
+                </p>
         
-                <span>{{e.localisation}}</span>
         
                 <a class="absolute bottom-2 left-2" href="tel:{{phoneNumber}}">
                     <button class="bg-blue-600 py-1 px-4 text-white flex items-center rounded-lg text-xs">
@@ -26,6 +31,8 @@
                 </a>
             </div>
         </div>
+   
+    
         {% empty %}
         <h1 class="text-xl text-center">Aucun résultat pour votre recherche !</h1>
         {% endfor  %}
