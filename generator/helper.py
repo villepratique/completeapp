@@ -150,7 +150,7 @@ def getData(item : Bon):
     'value12': getValue(12,item), 
     'datePremiere': item.firstDeploy,
     'website' : item.website,
-    "numberComDate" : f"{item.id} \t {datetime.now()}",
+    "numberComDate" : f"{item.id} \t {datetime.now()[0:10]}",
     "city" : item.city,
     "commentInput" : item.observations
     }
