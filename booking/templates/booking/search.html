@@ -4,29 +4,35 @@
 
 {% block content %}
 
-<div class="lg:grid lg:grid-cols-2 lg:gap-8  xl:grid-cols-3 my-10 mx-4 space-y-10 lg:space-y-0 ">
-    {% for e in data %}
-    <div class="flex shadow-lg border-2 lg:max-w-md mx-auto ">
-        <div style="background-image: url(https://via.placeholder.com/290x228.png?text=Ma%20ville%20pratique);
-        background-position: center ;background-size: cover;" class=" w-72 h-52">
-        </div>
-        <div class="px-4 pt-2 space-y-4 relative">
-            <p>{{e.title}}</p>
-        <span class="text-gray-400 italic">{{e.job}}</span>
-            <div class="w-20 h-2 bg-gray-400">
+<div style="min-height: 80vh;">
+
+    <div  class="lg:grid lg:grid-cols-2 lg:gap-8  xl:grid-cols-3 my-10 mx-4 space-y-10 lg:space-y-0">
+        {% for e in data %}
+        <div class="flex shadow-lg border-2 lg:max-w-md mx-auto ">
+            <div style="background-image: url(https://via.placeholder.com/290x228.png?text=Ma%20ville%20pratique);
+            background-position: center ;background-size: cover;" class=" w-72 h-52">
             </div>
-    
-            <span>{{e.localisation}}</span>
-    
-            <a class="absolute bottom-2 left-2" href="tel:{{phoneNumber}}">
-                <button class="bg-blue-600 py-1 px-4 text-white flex items-center rounded-lg text-xs">
-                 <img class="w-5 mr-2" src="{% static 'booking/phone-call.png' %}" alt="">    <span>{{e.phoneNumber}}</span></button>
-            </a>
+            <div class="px-4 pt-2 space-y-4 relative">
+                <p>{{e.title}}</p>
+            <span class="text-gray-400 italic">{{e.job}}</span>
+                <div class="w-20 h-2 bg-gray-400">
+                </div>
+        
+                <span>{{e.localisation}}</span>
+        
+                <a class="absolute bottom-2 left-2" href="tel:{{phoneNumber}}">
+                    <button class="bg-blue-600 py-1 px-4 text-white flex items-center rounded-lg text-xs">
+                     <img class="w-5 mr-2" src="{% static 'booking/phone-call.png' %}" alt="">    <span>{{e.phoneNumber}}</span></button>
+                </a>
+            </div>
         </div>
+        {% endfor  %}
+     
     </div>
-    {% endfor  %}
- 
+    
+    
 </div>
+
 
 
 {% endblock %}
