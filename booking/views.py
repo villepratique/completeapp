@@ -12,20 +12,26 @@ from .models import Entreprise
 def index(request):
     return render(request, 'booking/index/index.html' )
 
+def sanitize(value : str):
+    return value.strip().lower()
+
 def search(request):
     e = Entreprise.objects.all()
+    # print(e.values())
     if request.method == 'GET':
         qd = request.GET
-        if (qd.get("what")):
-            e = e.filter(job=qd["what"])
-        if (qd.get("who")):
-            e = e.filter(job=qd["who"])
-        if (qd.get("paris")):
-            e = e.filter(job=qd["paris"])
+        what , who , where = qd.get("what") , qd.get("who") , qd.get("where")
 
-        print(e.values())
+        if (what):
+            what = sanitize(what)
+            e = e.filter(job=what)
+        if (who):
+            who = sanitize(who)
+            e = e.filter(job=who)
+        if (where):
+            where = sanitize(where)
+            e = e.filter(city=where)
 
-    
     return render(request, 'booking/search.html' , {"data" : e} )
 
 def contact(request):
