@@ -139,6 +139,9 @@ def getValue(value ,item : Bon ):
 
 
 def getData(item : Bon):
+    now = datetime.now()
+    date = now.strftime("%D")
+
     return {
     'societyInput': item.socialReason, 'representedby': item.representedBy , 
     'adresse1': item.adresse, 'tel': item.phoneOrFax, 'cp': item.postalCode, 
@@ -150,7 +153,7 @@ def getData(item : Bon):
     'value12': getValue(12,item), 
     'datePremiere': item.firstDeploy,
     'website' : item.website,
-    "numberComDate" : f"{item.id} \t {datetime.now()}",
+    "numberComDate" : f"{item.id} \t {date}",
     "city" : item.city,
     "commentInput" : item.observations
     }
@@ -160,8 +163,11 @@ def generatePDF(item : Bon) :
     templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplate.pdf')
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
-    result = fillpdfs.get_form_fields(templatePlace)
-    d = getData(item)
+
     title = str(time.time()) + ".pdf"
-    fillpdfs.write_fillable_pdf(templatePlace, 'generator/static/generator/pdfs/'+title, d)
+    resultPlace = 'generator/static/generator/pdfs/'+title
+    
+    d = getData(item)
+    fillpdfs.write_fillable_pdf(templatePlace, resultPlace, d)
+    fillpdfs.flatten_pdf(resultPlace, resultPlace)
     return title
