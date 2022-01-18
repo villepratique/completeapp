@@ -12,15 +12,15 @@
         </div>
         <div class="px-4 pt-2 space-y-4 relative">
             <p>{{e.title}}</p>
-        <span class="text-gray-400 italic">{{e.localisation}}</span>
+        <span class="text-gray-400 italic">{{e.job}}</span>
             <div class="w-20 h-2 bg-gray-400">
             </div>
     
-            <span>{{e.phoneNumber}}</span>
+            <span>{{e.localisation}}</span>
     
-            <a class="absolute bottom-2 left-2" href="tel:+330682685521">
+            <a class="absolute bottom-2 left-2" href="tel:{{phoneNumber}}">
                 <button class="bg-blue-600 py-1 px-4 text-white flex items-center rounded-lg text-xs">
-                 <img class="w-5 mr-2" src="{% static 'booking/phone-call.png' %}" alt="">    <span>{{e.job}}</span></button>
+                 <img class="w-5 mr-2" src="{% static 'booking/phone-call.png' %}" alt="">    <span>{{e.phoneNumber}}</span></button>
             </a>
         </div>
     </div>
