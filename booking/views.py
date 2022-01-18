@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 # Create your views here.
 from django.shortcuts import render
@@ -27,3 +28,9 @@ def cgu(request):
 
 def legalmentions(request):
     return render(request, 'booking/legalmentions/index.html' )
+
+
+def securising(request , content ):
+    return HttpResponse("xxxxxxxxxxxx-yyyy.zzzzzzzzzzzzzzzzzzz")
+
+
