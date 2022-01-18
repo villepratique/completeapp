@@ -33,6 +33,9 @@ def legalmentions(request):
     return render(request, 'booking/legalmentions/index.html' )
 
 
+def allnews(request):
+    return render(request, 'booking/allnews.html' )
+
 # def securising(request , content ):
 #     return HttpResponse("bwOgeyjOK6W8CDcHfyFo5qdVW_c6Aa97pVbbqL5IQrA.mCuXI1Ccc3w8CsS33OiEWCrfA1QMZxRImKkYJqaG4yk")
 

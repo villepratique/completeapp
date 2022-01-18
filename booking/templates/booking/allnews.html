@@ -1,36 +1,17 @@
+{% extends 'layout.html' %}
 
+{% load static %}
 
+{% block content %}
 
-      <h1 class="font-semi-bold md:text-xl text-gray-900 pb-2 mb-10 text-center mt-10  font-bold md:text-3xl  ">
-        <span class="text-green-500 ">Les actualités </span> du moment !
-    </h1>
+<div style="min-height: 80vh;">
+    <h1 class="text-center text-2xl my-4 font-bold">Toutes les actualités</h1>
 
+   <div class="sm:grid sm:grid-cols-2 sm:gap-8 xl:grid-cols-3 px-10 mx-auto w-full" id="newsidcont">
 
-      <div  class="swiper mySwiper">
-        <div class="swiper-wrapper ">
-          <div id="firstswiperslide" class="swiper-slide md:flex mx-auto px-4  ">
-            
-            
-           <h1 class="mx-auto text-xl mb-4">Aucune news pour le moment</h1>
-           
-          </div>
-
-       
-
-        </div>
-        <!-- <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div> -->
-        <div class="swiper-pagination"></div>
-      </div>
-
-
-<div class="text-center">
-    <a href="{% url 'allnews' %}">
-        <button class="py-4 w-72 px-4 bg-green-700 text-white rounded-lg  border-4 ">Voir plus d'actualités</button>
-    </a>
+   </div>
+    
 </div>
-
-
 
 
 
@@ -63,7 +44,7 @@
 
         console.log(result)
 
-        document.querySelector("#firstswiperslide").innerHTML = result
+        document.querySelector("#newsidcont").innerHTML = result
     }
     
     // Handle News
@@ -77,9 +58,9 @@
         })
         .then(response => response.json())
         .then((data) => {
-            console.log(data.articles.slice(0,2))
+            console.log(data.articles.slice(0,))
             try {
-                handleNewsResponse(data.articles.slice(0,2))
+                handleNewsResponse(data.articles.slice(0,10))
             } catch (error) {
             }
         })
@@ -87,3 +68,7 @@
         console.error(err);
         });
   </script>
+
+
+
+{% endblock %}
