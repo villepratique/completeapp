@@ -91,41 +91,76 @@ import pdfkit
 from django.template import Context, Template
 
 
-def generatePDF(item : Bon , siteUrl = "https://pyproject99.herokuapp.com"):
-    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/generate_template.html')
+# def generatePDF(item : Bon , siteUrl = "https://pyproject99.herokuapp.com"):
+#     templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/generate_template.html')
     
-    try:
-        item.nbDeployOrdered = int(item.nbDeployOrdered)  
-    except:
-        item.nbDeployOrdered = item.nbDeployOrdered  
+#     try:
+#         item.nbDeployOrdered = int(item.nbDeployOrdered)  
+#     except:
+#         item.nbDeployOrdered = item.nbDeployOrdered  
 
-    print("bbbbbb ",templatePlace)
+#     print("bbbbbb ",templatePlace)
 
-    f = open(templatePlace)
-    template = Template(f.read())
-    html = template.render(Context({"bon" : item , "siteUrl" : siteUrl , "date" : datetime.now}))
+#     f = open(templatePlace)
+#     template = Template(f.read())
+#     html = template.render(Context({"bon" : item , "siteUrl" : siteUrl , "date" : datetime.now}))
 
+#     title = str(time.time()) + ".pdf"
+    
+
+#     if 'DYNO' in os.environ:
+#         print ('loading wkhtmltopdf path on heroku')
+#         WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
+#         stdout=subprocess.PIPE).communicate()[0].strip()
+
+#         config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
+#         pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title , configuration=config)
+
+#     else:
+#         print ('loading wkhtmltopdf path on localhost')
+#         # MYDIR = os.path.dirname(__file__)    
+#         # WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
+#         pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title)
+    
+
+    
+
+
+#     return title
+
+
+import fillpdf
+from fillpdf import fillpdfs
+
+def getValue(value ,item : Bon ):
+    if(value == item.nbDeployOrdered):
+        return "Yes"
+    return "Off"
+
+
+def getData(item : Bon):
+    return {
+    'societyInput': item.socialReason, 'representedby': item.representedBy , 
+    'adresse1': item.adresse, 'tel': item.phoneOrFax, 'cp': item.postalCode, 
+    'portable': item.portable, 'email': item.email, 'activity': item.sector, 'locationformat': "locationformat",
+    'tarifht': item.priceHT, 'tva': item.tva, 'tarfittc': item.totalTTC, 
+    'value3': getValue(3,item), 
+    'value6': getValue(6,item), 
+    'value9': getValue(9,item),
+    'value12': getValue(12,item), 
+    'datePremiere': item.firstDeploy,
+    'website' : item.website,
+    "numberComDate" : f"{item.id} \t {datetime.now()}",
+    "city" : item.city,
+    "commentInput" : item.observations
+    }
+
+
+def generatePDF(item : Bon) :
+    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplate.pdf')
+    result = fillpdfs.get_form_fields(templatePlace)
+    print(result)
+    result = fillpdfs.get_form_fields(templatePlace)
+    d = getData(item)
     title = str(time.time()) + ".pdf"
-    
-
-    if 'DYNO' in os.environ:
-        print ('loading wkhtmltopdf path on heroku')
-        WKHTMLTOPDF_CMD = subprocess.Popen(['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf-pack')], # Note we default to 'wkhtmltopdf' as the binary name
-        stdout=subprocess.PIPE).communicate()[0].strip()
-
-        config = pdfkit.configuration(wkhtmltopdf=WKHTMLTOPDF_CMD)
-        pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title , configuration=config)
-
-    else:
-        print ('loading wkhtmltopdf path on localhost')
-        # MYDIR = os.path.dirname(__file__)    
-        # WKHTMLTOPDF_CMD = os.path.join(MYDIR + "/static/executables/bin/", "wkhtmltopdf.exe")
-        pdfkit.from_string(html, 'generator/static/generator/pdfs/'+title)
-    
-
-    
-
-
-    return title
-
-
+    fillpdfs.write_fillable_pdf(templatePlace, 'generator/static/generator/pdfs/'+title, d)

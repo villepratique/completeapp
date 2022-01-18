@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index ,contact , search , cgu , legalmentions , securising
+from .views import index ,contact , search , cgu , legalmentions 
 
 
 urlpatterns = [
@@ -10,10 +10,7 @@ urlpatterns = [
     path('conditions-generales', cgu , name="cgu"),
     path('mentions-legales', legalmentions , name="legalmentions"),
 
-    path('.well-known/acme-challenge/<str:content>', securising , name="securising"),
-
-    
-    
+    # path('.well-known/acme-challenge/<str:content>', securising , name="securising"),
 ]
 
 
