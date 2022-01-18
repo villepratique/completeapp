@@ -31,6 +31,6 @@ def legalmentions(request):
 
 
 def securising(request , content ):
-    return HttpResponse(content)
+    return HttpResponse("bwOgeyjOK6W8CDcHfyFo5qdVW_c6Aa97pVbbqL5IQrA.mCuXI1Ccc3w8CsS33OiEWCrfA1QMZxRImKkYJqaG4yk")
 
 
