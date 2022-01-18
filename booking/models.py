@@ -11,7 +11,10 @@ class Contact(models.Model):
 
 class Entreprise(models.Model):
     title = models.CharField(max_length=255 , verbose_name="Titre")
-    localisation = models.CharField(max_length=255 , verbose_name="localisation")
+    streetNumber = models.CharField(max_length=255 , verbose_name="Numéro de rue")
+    streetName = models.CharField(max_length=255 , verbose_name="Nom de la rue")
+    city = models.CharField(max_length=255 , verbose_name="Ville")
+
     phoneNumber = models.CharField(max_length=255 , verbose_name="numéro de téléphone")
     job = models.CharField(max_length=255 , verbose_name="Job")
 

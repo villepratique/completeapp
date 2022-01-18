@@ -81,133 +81,77 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
 
 
     <script>
-
       const last_searches = [
       "1- Électricien Lyon",
       "2- Paysagiste Strasbourg",
       "3- Café / Bar Nice",
-      "4- Peintre Montpellier",
-      "5- Fleuriste Nantes",
-      "6- Menuisier Toulouse",
-      "7- Restaurant Bordeaux",
-      "8- Maçon Annecy",
-      "9- Pâtisserie Toulouse",
-      "10- Salon de beauté Nice",
-      "11- Photographe Montpellier",
-      "12- Coiffure Lyon",
-      "13- Traiteur Nantes",
-      "14- Garage automobile Bordeaux",
-      "15- Boulangerie Metz",
-      "16- Plombier Clermont-Ferrand",
-      "17- Médecin Laval",
-      "18- Bar Orléans",
-      "19- Taxis Bordeaux",
-      "20- Menuisier Grenoble",
       ]
-              
       document.querySelector("#last_searches").innerHTML += last_searches.map((item) => `<p> ${item} </p>` ).join(" ")
+
+      let workers_data = []
+      let cities_data = []
+
+      fetch("http://127.0.0.1:8000/dataJson")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            workers_data = data.map((item) => item.job)
+            cities_data = data.map((item) => item.city)
+      }).catch((e) => {console.log(e)})
       
-          const workers_data = [
-          "Abattoirs",
-          "Abrasifs et super-abrasifs (fabrication, gros)",
-          "Academies de billards",
-          "Accessoires animaux, Vente",
-          "Accessoires de levage et d'arrimage",
-          "Accessoires de mode",
-          "Accessoires et fournitures pour pharmacies",
-          "Accessoires pour etalages",
-          "Accompagnement personnalisé",
-          "Accordeurs, reparateurs de pianos",
-          "Achat et vente d'antiquites",
-          "Achat et vente d'objets d'art et de collection",
-          "Achat et vente de bijoux anciens et d'occasion",
-          "Achat, Vente, Reprise de véhicules",
-          "Acier : produits siderurgiques et transformes (fabrication, negoce)",
-          "Aciers inoxydables",
-          "Acoustique (etudes, projets, mesures)",
-          "Actuaires",
-          "Adaptations, amenagements speciaux pour automobiles, vehicules industriels",
-          "Adhesifs (fabrication, gros)"
-          ]
-      
-      
-          const cities_data = [
-              "Aast (64)",
-              "Abainville (55)",
-              "Abancourt (59)",
-              "Abancourt (60)",
-              "Abaucourt Hautecourt (55)",
-              "Abaucourt Sur Seille (54)",
-              "Abbans Dessous (25)",
-              "Abbans Dessus (25)",
-              "Abbaretz (44)",
-              "Abbecourt (02)",
-              "Abbecourt (60)",
-              "Abbenans (25)",
-              "Abbeville (80)",
-              "Abbeville La Riviere (91)",
-              "Abbeville Les Conflans (54)",
-              "Abbeville St Lucien (60)",
-              "Abbevillers (25)",
-              "Abeilhan (34)",
-              "Abelcourt (70)",
-              "Abere (64)",
-          
-              "Lille (59)",
-              "Lillebonne (76)",
-              "Lillemer (35)",
-              "Lillers (62)",
-              "Lilly (27)"
-          ]
-      
-          const handleShowSuggestion = (e , inputId , blockId , data ) => {
-              document.querySelector(blockId).innerHTML = ""
-              const input = e.target.value
-              let html = ""
-      
-              if(input.length === 0) return document.querySelector(blockId).style.display = "none"
-              data.forEach(title => {
-                  const result = title.toUpperCase().includes(input.toUpperCase())
-                  if(result)
-                      html += `<li class='cursor-pointer hover:bg-green-800 suggestionItem px-4 hover:text-white'> ${title} </li>`
-              });
-              document.querySelector(blockId).innerHTML += html
-              document.querySelector(blockId).style.display = "block"
-      
-      
-              document.querySelectorAll(".suggestionItem").forEach((element) => {
-              element.addEventListener("click" , (e) => {
-                  document.querySelector(inputId).value = e.target.textContent
-                  document.querySelector(blockId).style.display = "none"
-                  })
-              })
-      
+      const handleShowSuggestion = (e , inputId , blockId , data ) => {
+          document.querySelector(blockId).innerHTML = ""
+          const input = e.target.value
+          let html = ""
+
+          console.log(input)
+  
+          if(input.length === 0) return document.querySelector(blockId).style.display = "none"
+          data.forEach(title => {
+              const result = title.toUpperCase().includes(input.toUpperCase())
+              if(result){
+                html += `<li class='cursor-pointer hover:bg-green-800 suggestionItem px-4 hover:text-white'> ${title} </li>`
+              }
+                  
+          });
+
+          if(!html){
+            return 
           }
-      
-          document.querySelector("#what").addEventListener("input" , (e) => {
-              handleShowSuggestion(e , "#what" , "#whatResult" , workers_data)
+          document.querySelector(blockId).innerHTML += html
+          document.querySelector(blockId).style.display = "block"
+  
+  
+          document.querySelectorAll(".suggestionItem").forEach((element) => {
+          element.addEventListener("click" , (e) => {
+              document.querySelector(inputId).value = e.target.textContent
+              document.querySelector(blockId).style.display = "none"
+              })
           })
-      
-          document.querySelector("#where").addEventListener("input" , (e) => {
-              handleShowSuggestion(e , "#where" , "#whereResult" , cities_data )
-          })
-      
-      
-          document.querySelector("#searchNumber").addEventListener("click" , () => {
-              document.querySelector("#form1").style.display = "none"
-              document.querySelector("#form2").style.display = "block"
-          })
-      
-          document.querySelector("#searchProfessional").addEventListener("click" , () => {
-              document.querySelector("#form1").style.display = "block"
-              document.querySelector("#form2").style.display = "none"
-          })
-      
-      
+  
+      }
+  
+      document.querySelector("#what").addEventListener("input" , (e) => {
+          handleShowSuggestion(e , "#what" , "#whatResult" , workers_data)
+      })
+  
+      document.querySelector("#where").addEventListener("input" , (e) => {
+          handleShowSuggestion(e , "#where" , "#whereResult" , cities_data )
+      })
+  
+  
+      document.querySelector("#searchNumber").addEventListener("click" , () => {
+          document.querySelector("#form1").style.display = "none"
+          document.querySelector("#form2").style.display = "block"
+      })
+  
+      document.querySelector("#searchProfessional").addEventListener("click" , () => {
+          document.querySelector("#form1").style.display = "block"
+          document.querySelector("#form2").style.display = "none"
+      })
       
        const featuredCategoryTemplate = (title , index) => `<div class="relative mt-5 featuredCategory">
             <img class="w-full" src="{% static 'booking/cat${index + 1}.jpeg' %}" alt="">
-
             <div 
             class="w-3/5  h-20 bg-white text-center bottom-0 right-0 absolute flex items-center shadow-md">
                 <p style="max-width: 120px;" class=" mx-auto">${title}</p>

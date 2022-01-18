@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index ,contact , search , cgu , legalmentions , allnews 
+from .views import index ,contact , search , cgu , legalmentions , allnews  , dataJson
 
 
 urlpatterns = [
@@ -10,6 +10,8 @@ urlpatterns = [
     path('conditions-generales', cgu , name="cgu"),
     path('mentions-legales', legalmentions , name="legalmentions"),
     path('actualites', allnews , name="allnews"),
+    path('dataJson', dataJson , name="dataJson"),
+    
 
 
     

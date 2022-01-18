@@ -9,14 +9,8 @@
       <div  class="swiper mySwiper">
         <div class="swiper-wrapper ">
           <div id="firstswiperslide" class="swiper-slide md:flex mx-auto px-4  ">
-            
-            
            <h1 class="mx-auto text-xl mb-4">Aucune news pour le moment</h1>
-           
           </div>
-
-       
-
         </div>
         <!-- <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div> -->
@@ -61,7 +55,7 @@
             result += showNews(news)
         });
 
-        console.log(result)
+        // console.log(result)
 
         document.querySelector("#firstswiperslide").innerHTML = result
     }
@@ -77,7 +71,7 @@
         })
         .then(response => response.json())
         .then((data) => {
-            console.log(data.articles.slice(0,2))
+            // console.log(data.articles.slice(0,2))
             try {
                 handleNewsResponse(data.articles.slice(0,2))
             } catch (error) {
