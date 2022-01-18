@@ -7,11 +7,14 @@ from booking.forms import ContactForm
 from django.contrib.auth.decorators import login_required
 
 
+from .models import Entreprise
+
 def index(request):
     return render(request, 'booking/index/index.html' )
 
 def search(request):
-    return render(request, 'booking/search.html' )
+    e = Entreprise.objects.all()
+    return render(request, 'booking/search.html' , {"data" : e} )
 
 def contact(request):
     form = ContactForm()

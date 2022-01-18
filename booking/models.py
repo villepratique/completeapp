@@ -14,3 +14,6 @@ class Entreprise(models.Model):
     localisation = models.CharField(max_length=255 , verbose_name="localisation")
     phoneNumber = models.CharField(max_length=255 , verbose_name="numéro de téléphone")
     job = models.CharField(max_length=255 , verbose_name="Job")
+
+    def __str__(self) -> str:
+        return f"{self.id}-{self.title} - {self.job}"
