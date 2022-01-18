@@ -164,3 +164,4 @@ def generatePDF(item : Bon) :
     d = getData(item)
     title = str(time.time()) + ".pdf"
     fillpdfs.write_fillable_pdf(templatePlace, 'generator/static/generator/pdfs/'+title, d)
+    return title
