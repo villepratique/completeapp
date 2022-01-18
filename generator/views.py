@@ -21,7 +21,7 @@ def generate(request):
             bon.owner = request.user
             bon.ownerName = request.user.username
             bon.save()
-            pdfId = generatePDF(bon , settings.SITE_URL)
+            pdfId = generatePDF(bon)
             bon.filename = pdfId
             return HttpResponseRedirect('/static/generator/pdfs/'+ pdfId)
             # try:
