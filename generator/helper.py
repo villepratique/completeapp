@@ -145,7 +145,8 @@ def getValue(value ,item : Bon ):
 
 def getData(item : Bon):
     now = datetime.now()
-    date = now.strftime("%D")
+    date = now.strftime("%d/%m/%Y")
+    
     varse = vars(item)
     for i in  varse:
         if(varse[i] is None):
@@ -165,7 +166,8 @@ def getData(item : Bon):
     'website' : item.website,
     "numberComDate" : f"{item.id} \t {date}",
     "city" : item.city,
-    "commentInput" : item.observations
+    "commentInput" : item.observations,
+    "delDate" : date
     }
 
 
@@ -179,5 +181,5 @@ def generatePDF(item : Bon) :
 
     d = getData(item)
     fillpdfs.write_fillable_pdf(templatePlace, resultPlace, d)
-    fillpdfs.flatten_pdf(resultPlace, resultPlace)
+    # fillpdfs.flatten_pdf(resultPlace, resultPlace)
     return title
