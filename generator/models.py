@@ -34,7 +34,9 @@ class Bon(models.Model):
     email = models.EmailField(verbose_name="Email (obligatoire)" , blank=True , null=True)
     website = models.URLField(verbose_name="Site web" , blank=True , null=True)
     # Mise en ligne
-    firstDeploy = models.DateField(verbose_name="Première mise en ligne programmée le" , blank=True , null=True)
+    # firstDeploy = models.DateField(verbose_name="Première mise en ligne programmée le" , blank=True , null=True)
+    firstDeploy = models.CharField(max_length=255 , verbose_name="Première mise en ligne programmée le" , blank=True , null=True)
+
     nbDeployOrdered = models.CharField(max_length=255 , choices= CHOICES , verbose_name="Nombre de mise en ligne commandées" , blank=True , null=True )
     # Bon de commande 
     encart = models.CharField(max_length=255 , verbose_name="Encart" , blank=True , null=True)

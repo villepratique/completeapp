@@ -147,20 +147,18 @@ def getData(item : Bon):
     now = datetime.now()
     date = now.strftime("%d/%m/%Y")
     # firstDeploy = now.strftime("%d/%m/%Y")
-
     # r = datetime.strptime(item.firstDeploy, '%d/%m/%y')
-
     # print("r " , r)
-
     # datetime. strptime(encart , "%d/%m/%Y")
-    try:
-        if item.firstDeploy is not None:
-            d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
-            item.firstDeploy = d.strftime("%d/%m/%Y")
-    except:
-        pass
+    # try:
+    #     if item.firstDeploy is not None:
+    #         d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
+    #         print(" La valeur " ,  d.strftime("%d/%m/%Y"))
+    #         item.firstDeploy = d.strftime("%d/%m/%Y")
+    # except:
+    #     pass
 
-    print(item.firstDeploy)
+    print("après " , item.firstDeploy)
     
     varse = vars(item)
     for i in  varse:
