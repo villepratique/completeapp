@@ -146,6 +146,9 @@ def getValue(value ,item : Bon ):
 def getData(item : Bon):
     now = datetime.now()
     date = now.strftime("%d/%m/%Y")
+    firstDeploy = now.strftime("%d/%m/%Y")
+
+    # datetime. strptime(encart , "%d/%m/%Y")
     
     varse = vars(item)
     for i in  varse:
@@ -155,24 +158,26 @@ def getData(item : Bon):
 
     return {
     'societyInput': item.socialReason, 'representedby': item.representedBy , 
-    'adresse1': item.adresse, 'tel': item.phoneOrFax, 'cp': item.postalCode, 
-    'portable': item.portable, 'email': item.email, 'activity': item.sector, 'locationformat': "locationformat",
+    'adresse1': item.adresse, 'tel': item.phoneOrFax, 'cp': item.postalCode + " " + item.city, 
+    'portable': item.portable, 'email': item.email, 'activity': item.sector, 'locationformat': item.encart,
     'tarifht': item.priceHT, 'tva': item.tva, 'tarfittc': item.totalTTC, 
     'value3': getValue(3,item), 
     'value6': getValue(6,item), 
     'value9': getValue(9,item),
     'value12': getValue(12,item), 
-    'datePremiere': item.firstDeploy,
+    'datePremiere': firstDeploy,
     'website' : item.website,
     "numberComDate" : f"{item.id} \t {date}",
     "city" : item.city,
     "commentInput" : item.observations,
-    "delDate" : date
+    "delDate" : date,
+    "annualHt" : item.totalHT,
+    "delName" : item.commercialContact
     }
 
 
 def generatePDF(item : Bon) :
-    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew.pdf')
+    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew2.pdf')
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
 
@@ -181,5 +186,5 @@ def generatePDF(item : Bon) :
 
     d = getData(item)
     fillpdfs.write_fillable_pdf(templatePlace, resultPlace, d)
-    # fillpdfs.flatten_pdf(resultPlace, resultPlace)
+    fillpdfs.flatten_pdf(resultPlace, resultPlace)
     return title
