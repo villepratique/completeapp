@@ -153,10 +153,12 @@ def getData(item : Bon):
     # print("r " , r)
 
     # datetime. strptime(encart , "%d/%m/%Y")
-
-    if item.firstDeploy is not None:
-        d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
-        item.firstDeploy = d.strftime("%d/%m/%Y")
+    try:
+        if item.firstDeploy is not None:
+            d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
+            item.firstDeploy = d.strftime("%d/%m/%Y")
+    except:
+        pass
 
     print(item.firstDeploy)
     
