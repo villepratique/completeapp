@@ -146,9 +146,18 @@ def getValue(value ,item : Bon ):
 def getData(item : Bon):
     now = datetime.now()
     date = now.strftime("%d/%m/%Y")
-    firstDeploy = now.strftime("%d/%m/%Y")
+    # firstDeploy = now.strftime("%d/%m/%Y")
+
+    # r = datetime.strptime(item.firstDeploy, '%d/%m/%y')
+
+    # print("r " , r)
 
     # datetime. strptime(encart , "%d/%m/%Y")
+
+    d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
+    item.firstDeploy = d.strftime("%d/%m/%Y")
+
+    print(item.firstDeploy)
     
     varse = vars(item)
     for i in  varse:
@@ -165,7 +174,7 @@ def getData(item : Bon):
     'value6': getValue(6,item), 
     'value9': getValue(9,item),
     'value12': getValue(12,item), 
-    'datePremiere': firstDeploy,
+    'datePremiere': item.firstDeploy,
     'website' : item.website,
     "numberComDate" : f"{item.id} \t {date}",
     "city" : item.city,
@@ -181,10 +190,12 @@ def generatePDF(item : Bon) :
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
 
+
     title = str(time.time()) + ".pdf"
     resultPlace = 'generator/static/generator/pdfs/'+title
 
     d = getData(item)
+    print(type(item.firstDeploy))
     fillpdfs.write_fillable_pdf(templatePlace, resultPlace, d)
     fillpdfs.flatten_pdf(resultPlace, resultPlace)
     return title
