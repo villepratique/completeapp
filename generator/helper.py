@@ -177,7 +177,7 @@ def getData(item : Bon):
 
 
 def generatePDF(item : Bon) :
-    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew2.pdf')
+    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew1.pdf')
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
 
