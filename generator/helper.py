@@ -154,8 +154,9 @@ def getData(item : Bon):
 
     # datetime. strptime(encart , "%d/%m/%Y")
 
-    d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
-    item.firstDeploy = d.strftime("%d/%m/%Y")
+    if item.firstDeploy is not None:
+        d = datetime.strptime(item.firstDeploy, "%d/%m/%Y").date()
+        item.firstDeploy = d.strftime("%d/%m/%Y")
 
     print(item.firstDeploy)
     
