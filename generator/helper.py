@@ -146,6 +146,11 @@ def getValue(value ,item : Bon ):
 def getData(item : Bon):
     now = datetime.now()
     date = now.strftime("%D")
+    varse = vars(item)
+    for i in  varse:
+        if(varse[i] is None):
+            varse[i] = " "
+
 
     return {
     'societyInput': item.socialReason, 'representedby': item.representedBy , 
@@ -165,7 +170,7 @@ def getData(item : Bon):
 
 
 def generatePDF(item : Bon) :
-    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplate.pdf')
+    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew.pdf')
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
 
