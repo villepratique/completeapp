@@ -177,7 +177,7 @@ def getData(item : Bon):
     'value6': getValue(6,item), 
     'value9': getValue(9,item),
     'value12': getValue(12,item), 
-    'datePremiere': item.firstDeploy,
+    'datePremiere': date,
     'website' : item.website,
     "numberComDate" : f"{item.id} \t {date}",
     "city" : item.city,

@@ -60,7 +60,6 @@
     {% csrf_token %}
     <div class="shadow-lg p-4 rounded-lg bg-gray-100 displayAsTable">
       <h3 class="text-2xl font-bold mt-5">Informations entête</h3>
-      {% include "generator/_formHelper.html" with field=form.date %}
       {% include "generator/_formHelper.html" with field=form.autoNumerotation %}
       {% include "generator/_formHelper.html" with field=form.nonReductibleCommand %}
       {% include "generator/_formHelper.html" with field=form.editionDomTom %}
@@ -82,7 +81,6 @@
 
     <div class="shadow-lg p-4 rounded-lg bg-gray-100">
       <h3 class="text-2xl font-bold mt-5">Mise en ligne</h3>
-      {% include "generator/_formHelper.html" with field=form.firstDeploy %}
       {% include "generator/_formHelper.html" with field=form.nbDeployOrdered %}
     </div>
 
