@@ -1,5 +1,5 @@
 from src.settings import *
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ["pyproject99.herokuapp.com" , "mavillepratique.fr" , "www.mavillepratique.fr"]
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
