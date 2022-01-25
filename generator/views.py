@@ -11,8 +11,10 @@ from generator.helper import generatePDF, loadData, loadFixtures
 from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
+from django.contrib.auth.decorators import user_passes_test
 
-@login_required
+# @login_required
+@user_passes_test(lambda u: u.is_superuser)
 def generate(request):
     if request.method == 'POST':
         form = BonForm(request.POST)

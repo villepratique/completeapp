@@ -1,3 +1,4 @@
+from django.http import HttpResponseNotFound
 from django.shortcuts import redirect, render
 
 from .forms import NewUserForm
@@ -23,3 +24,5 @@ def logout_request(request):
 	logout(request)
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("home")
+
+ 
