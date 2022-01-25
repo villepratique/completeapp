@@ -3,6 +3,8 @@ from datetime import datetime
 import json
 from typing import List
 
+import django
+
 from generator.forms import BonForm
 
 from generator.models import Bon
@@ -186,14 +188,24 @@ def getData(item : Bon):
     }
 
 
+from django.conf import settings
+
 def generatePDF(item : Bon) :
     templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew1.pdf')
+
+    print("La valeur de settings" , settings.DEBUG)
+
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
 
 
     title = str(time.time()) + ".pdf"
     resultPlace = 'generator/static/generator/pdfs/'+title
+
+    if settings.DEBUG == False :
+        print("boujoumnboura")
+        resultPlace = 'staticfiles/generator/pdfs/'+title
+        print("resultPlace " , resultPlace)
 
     d = getData(item)
     print(type(item.firstDeploy))
