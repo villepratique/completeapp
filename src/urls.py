@@ -30,4 +30,6 @@ urlpatterns = [
     path('bdc/', include('generator.urls')),
     path('', include('core.urls')),
     path('', include('booking.urls')),
+
+    path('__debug__/', include('debug_toolbar.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

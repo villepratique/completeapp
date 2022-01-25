@@ -23,6 +23,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wzy)z&uowsq1po#f=1ml+!-pr^-7$8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+# ALLOWED_HOSTS = ["127.0.0.1"]
 ALLOWED_HOSTS = ["127.0.0.1"]
 
 # Application definition
@@ -37,9 +38,13 @@ INSTALLED_APPS = [
     'generator',
     'core',
     'booking',
+
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -150,4 +155,15 @@ SECURE_SSL_REDIRECT = False
 
 SITE_URL="http://127.0.0.1:8000"
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
+
+
+
 django_heroku.settings(locals())
+
+
