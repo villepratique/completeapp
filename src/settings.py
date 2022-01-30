@@ -160,9 +160,7 @@ SECURE_SSL_REDIRECT = False
 SITE_URL="http://127.0.0.1:8000"
 
 INTERNAL_IPS = [
-    # ...
     "127.0.0.1",
-    # ...
 ]
 
 # appkey = "bg7a0e0asp0aks2"
