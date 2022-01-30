@@ -8,13 +8,19 @@
 
     <div  class="lg:grid lg:grid-cols-2 xl:grid-cols-2 my-10 mx-4 space-y-10 lg:space-y-0 max-w-6xl mx-auto gap-8 px-4 md:px-4">
         {% for e in data %}
-        <div class="flex shadow-lg border-2 lg:max-w-lg mx-auto ">
+        <div class="flex shadow-lg border-2 lg:max-w-lg mx-auto  ">
+            {% if e.photo %}
+            <div style="background-image: url({{e.photo.url}});
+            background-position: center ;background-size: contain;background-repeat: no-repeat;" class="w-72 h-52">
+            </div>
+            {% else %}
             <div style="background-image: url(https://via.placeholder.com/290x228.png?text=Ma%20ville%20pratique);
             background-position: center ;background-size: cover;" class=" w-72 h-52">
             </div>
+            {% endif %}
             
             <div class="px-4 pt-2 relative">
-                <p>{{e.title}}</p>
+                <p style="color: red;text-overflow: ellipsis;overflow: hidden;" class="w-64">{{e.title}}</p>
                 <span class="text-gray-400 italic">{{e.job}}</span>
                 
                 <div class="w-20 h-2 bg-gray-400 mt-4">

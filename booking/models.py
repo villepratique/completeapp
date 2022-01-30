@@ -17,6 +17,7 @@ class Entreprise(models.Model):
 
     phoneNumber = models.CharField(max_length=255 , verbose_name="numéro de téléphone")
     job = models.CharField(max_length=255 , verbose_name="Job")
+    photo = models.ImageField(upload_to='soc_photos' , blank=True,null=True)
 
     def __str__(self) -> str:
         return f"{self.id}-{self.title} - {self.job}"

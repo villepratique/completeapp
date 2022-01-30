@@ -165,8 +165,14 @@ INTERNAL_IPS = [
     # ...
 ]
 
+# appkey = "bg7a0e0asp0aks2"
+# appSecret = "olj0w74gh1l7bn7"
+# accessToken = ""
 
+accessToken = os.environ.get('DROPBOX_ACCESS_TOKEN')
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
 
+DROPBOX_OAUTH2_TOKEN=accessToken
 
 django_heroku.settings(locals())
 
