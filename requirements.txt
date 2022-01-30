@@ -8,6 +8,8 @@ Django==3.2.9
 django-debug-toolbar==3.2.4
 django-extensions==3.1.5
 django-heroku==0.3.1
+django-storages==1.12.3
+dropbox==11.26.0
 fillpdf==0.6.0
 gunicorn==20.1.0
 idna==3.3
@@ -17,6 +19,7 @@ pdfkit==1.0.0
 pdfrw==0.4
 pdfrw2==0.5.0
 Pillow==9.0.0
+ply==3.11
 psycopg2==2.9.2
 pycparser==2.21
 pyOpenSSL==21.0.0
@@ -25,6 +28,7 @@ pytz==2021.3
 requests==2.26.0
 six==1.16.0
 sqlparse==0.4.2
+stone==3.3.1
 urllib3==1.26.7
 Werkzeug==2.0.2
 whitenoise==5.3.0
