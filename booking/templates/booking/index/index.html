@@ -110,15 +110,22 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
           let workers_data = []
           let cities_data = []
 
-
           fetch("/dataJson")
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
             workers_data = data.map((item) => item.job)
-            cities_data = data.map((item) => item.city)
+            cities_data = data.map((item) => item.city )
+            who_data = data.map((item) => item.title )
+
+            
+            workers_data = [...new Set(workers_data)];
+            cities_data = [...new Set(cities_data)];
+            who_data = [...new Set(who_data)];
+
           }).catch((e) => {console.log(e)})
 
+         
 
       
           const handleShowSuggestion = (e , inputId , blockId , data ) => {
@@ -152,6 +159,10 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
           document.querySelector("#where").addEventListener("input" , (e) => {
               handleShowSuggestion(e , "#where" , "#whereResult" , cities_data )
           })
+
+          document.querySelector("#who").addEventListener("input" , (e) => {
+              handleShowSuggestion(e , "#who" , "#whoResult" , who_data )
+          })
       
       
           document.querySelector("#searchNumber").addEventListener("click" , () => {
@@ -162,6 +173,15 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
           document.querySelector("#searchProfessional").addEventListener("click" , () => {
               document.querySelector("#form1").style.display = "block"
               document.querySelector("#form2").style.display = "none"
+          })
+
+          window.addEventListener("click" , (e) => {
+            if(!e.target.classList.contains("suggestionItem")){
+              document.querySelector("#whatResult").style.display = "none"
+              document.querySelector("#whereResult").style.display = "none"
+              document.querySelector("#whoResult").style.display = "none"
+              
+            }
           })
       
       

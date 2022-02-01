@@ -22,15 +22,28 @@ def search(request):
         qd = request.GET
         what , who , where = qd.get("what") , qd.get("who") , qd.get("where")
 
-        if (what):
-            what = sanitize(what)
-            e = e.filter(job=what)
-        if (who):
-            who = sanitize(who)
-            e = e.filter(job=who)
-        if (where):
-            where = sanitize(where)
-            e = e.filter(city=where)
+        what = sanitize(what)
+        who = sanitize(who)
+        where = sanitize(where)
+
+        e = e.filter(city__icontains=where , job__icontains=what , title__icontains=who)
+
+        # print(what , " " ,  who , " " ,  where)
+
+        # if (what):
+        #     print("what " , what)
+        #     what = sanitize(what)
+        #     e = e.filter(job__icontains=what)
+        # if (who):
+        #     print("who " , who)
+        #     who = sanitize(who)
+        #     e = e.filter(title__icontains=who)
+        # if (where):
+        #     print("where " , where)
+        #     where = sanitize(where)
+        #     print(e)
+        #     e = e.filter(city__icontains=where)
+        #     print(e)
 
     return render(request, 'booking/search.html' , {"data" : e} )
 
