@@ -107,58 +107,19 @@ href="https://unpkg.com/swiper/swiper-bundle.min.css"
               
       document.querySelector("#last_searches").innerHTML += last_searches.map((item) => `<p> ${item} </p>` ).join(" ")
       
-          const workers_data = [
-          "Abattoirs",
-          "Abrasifs et super-abrasifs (fabrication, gros)",
-          "Academies de billards",
-          "Accessoires animaux, Vente",
-          "Accessoires de levage et d'arrimage",
-          "Accessoires de mode",
-          "Accessoires et fournitures pour pharmacies",
-          "Accessoires pour etalages",
-          "Accompagnement personnalisé",
-          "Accordeurs, reparateurs de pianos",
-          "Achat et vente d'antiquites",
-          "Achat et vente d'objets d'art et de collection",
-          "Achat et vente de bijoux anciens et d'occasion",
-          "Achat, Vente, Reprise de véhicules",
-          "Acier : produits siderurgiques et transformes (fabrication, negoce)",
-          "Aciers inoxydables",
-          "Acoustique (etudes, projets, mesures)",
-          "Actuaires",
-          "Adaptations, amenagements speciaux pour automobiles, vehicules industriels",
-          "Adhesifs (fabrication, gros)"
-          ]
-      
-      
-          const cities_data = [
-              "Aast (64)",
-              "Abainville (55)",
-              "Abancourt (59)",
-              "Abancourt (60)",
-              "Abaucourt Hautecourt (55)",
-              "Abaucourt Sur Seille (54)",
-              "Abbans Dessous (25)",
-              "Abbans Dessus (25)",
-              "Abbaretz (44)",
-              "Abbecourt (02)",
-              "Abbecourt (60)",
-              "Abbenans (25)",
-              "Abbeville (80)",
-              "Abbeville La Riviere (91)",
-              "Abbeville Les Conflans (54)",
-              "Abbeville St Lucien (60)",
-              "Abbevillers (25)",
-              "Abeilhan (34)",
-              "Abelcourt (70)",
-              "Abere (64)",
-          
-              "Lille (59)",
-              "Lillebonne (76)",
-              "Lillemer (35)",
-              "Lillers (62)",
-              "Lilly (27)"
-          ]
+          let workers_data = []
+          let cities_data = []
+
+
+          fetch("/dataJson")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data)
+            workers_data = data.map((item) => item.job)
+            cities_data = data.map((item) => item.city)
+          }).catch((e) => {console.log(e)})
+
+
       
           const handleShowSuggestion = (e , inputId , blockId , data ) => {
               document.querySelector(blockId).innerHTML = ""
