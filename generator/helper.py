@@ -191,7 +191,7 @@ def getData(item : Bon):
 from django.conf import settings
 
 def generatePDF(item : Bon) :
-    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew1.pdf')
+    templatePlace = os.path.join(os.path.dirname(__file__), 'templates/generator/pdftemplateNew1-nov.pdf')
 
     print("La valeur de settings" , settings.DEBUG)
 
