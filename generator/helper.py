@@ -187,7 +187,6 @@ def getData(item : Bon):
     "delName" : item.commercialContact
     }
 
-
 from django.conf import settings
 
 def generatePDF(item : Bon) :
