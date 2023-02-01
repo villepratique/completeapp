@@ -186,6 +186,7 @@ def getData(item : Bon):
     "annualHt" : item.totalHT,
     "delName" : item.commercialContact
     }
+    
 
 from django.conf import settings
 
