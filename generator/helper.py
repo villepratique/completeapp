@@ -186,7 +186,7 @@ def getData(item : Bon):
     "annualHt" : item.totalHT,
     "delName" : item.commercialContact
     }
-    
+
 
 from django.conf import settings
 
@@ -197,7 +197,6 @@ def generatePDF(item : Bon) :
 
     result = fillpdfs.get_form_fields(templatePlace)
     print(result)
-
 
     title = str(time.time()) + ".pdf"
     resultPlace = 'generator/static/generator/pdfs/'+title
