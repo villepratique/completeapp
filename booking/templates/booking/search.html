@@ -13,6 +13,10 @@
             <div style="background-image: url({{e.photo.url}});
             background-position: center ;background-size: contain;background-repeat: no-repeat;" class="w-72 h-52">
             </div>
+            {% elif e.photoLink != "" %}
+            <div style="background-image: url({{e.photoLink}});
+            background-position: center ;background-size: cover;" class=" w-72 h-52">
+            </div>
             {% else %}
             <div style="background-image: url(https://via.placeholder.com/290x228.png?text=Ma%20ville%20pratique);
             background-position: center ;background-size: cover;" class=" w-72 h-52">
