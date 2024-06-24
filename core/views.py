@@ -25,4 +25,24 @@ def logout_request(request):
 	messages.info(request, "You have successfully logged out.") 
 	return redirect("home")
 
- 
+from django.http import HttpResponse
+# from django.utils.translation import gettext as _
+
+
+# def translate_view(request):
+#     output = _("Welcome to my site.")
+#     return HttpResponse(output)
+
+# from django.shortcuts import render
+# from googletrans import Translator
+
+# def translate_view(request):
+# 	# text_to_translate = request.POST.get('text_to_translate', '')
+# 	text_to_translate = "I am a boy"
+	
+# 	translator = Translator()
+# 	translated = translator.translate(text_to_translate, src='en', dest='ar')
+# 	translated_text = translated.text
+
+# 	return HttpResponse(translated_text)
+

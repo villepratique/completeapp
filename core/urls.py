@@ -35,6 +35,8 @@ class CustomPasswordResetView(auth_views.PasswordResetView):
 
 urlpatterns = [
     # path('login/', login , name="login"),
+    
+    # path('translation/', translate_view , name="translate_view"),
     path('inscription/', register , name="register"),
     path('deconnexion/', logout_request , name="logout_request"),
 

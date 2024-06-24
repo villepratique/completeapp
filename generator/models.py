@@ -15,9 +15,7 @@ class Bon(models.Model):
     ownerName = models.CharField(max_length=255 , verbose_name="ownerName")
     filename = models.CharField(max_length=255 , verbose_name="Nom du fichier")
 
-     
-
-    # Informations entête
+    # Informations en tête
     date = models.DateField(max_length=30 , verbose_name="Date" , blank=True , null=True)
     autoNumerotation = models.BooleanField(default=False , verbose_name="Numérotation automatique" , blank=True , null=True)
     nonReductibleCommand = models.BooleanField(default=False , verbose_name="Commande non reconductible " , blank=True , null=True)
@@ -34,6 +32,7 @@ class Bon(models.Model):
     email = models.EmailField(verbose_name="Email (obligatoire)" , blank=True , null=True)
     website = models.URLField(verbose_name="Site web" , blank=True , null=True)
     # Mise en ligne
+    
     # firstDeploy = models.DateField(verbose_name="Première mise en ligne programmée le" , blank=True , null=True)
     firstDeploy = models.CharField(max_length=255 , verbose_name="Première mise en ligne programmée le" , blank=True , null=True)
 

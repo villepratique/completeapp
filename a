@@ -1,2 +1,2 @@
 python3 manage.py dumpdata booking > booking.json
-python3 manage.py booking user.json
+python3 manage.py loaddata booking.json
